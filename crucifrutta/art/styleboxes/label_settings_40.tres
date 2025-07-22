@@ -1,0 +1,8 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://cv8csea2dlti8"]
+
+[ext_resource type="FontFile" uid="uid://c3ii6qbpg4ulc" path="res://art/font/Roc_Grotesk_Bold.ttf" id="1_q5gmn"]
+
+[resource]
+font = ExtResource("1_q5gmn")
+font_size = 40
+font_color = Color(0.0588235, 0.47451, 0.529412, 1)

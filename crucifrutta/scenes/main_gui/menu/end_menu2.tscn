@@ -1,0 +1,46 @@
+[gd_scene load_steps=8 format=3 uid="uid://dhrxnmx2xnaem"]
+
+[ext_resource type="PackedScene" uid="uid://dujdqfwmue2ch" path="res://scenes/main_gui/menu/end_menu.tscn" id="1_g8qhe"]
+[ext_resource type="Texture2D" uid="uid://d1qc7po1ut47p" path="res://art/graphics/backgrounds/LoserBackground.jpg" id="2_rkpef"]
+[ext_resource type="Texture2D" uid="uid://br5tc31qcq6fi" path="res://art/graphics/buttons/HoverButton.png" id="3_2cjxq"]
+[ext_resource type="FontFile" uid="uid://btuhlt2wotj04" path="res://art/font/SkippySharp.ttf" id="3_rkpef"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_8yncs"]
+font = ExtResource("3_rkpef")
+font_size = 50
+font_color = Color(0.101961, 0.0705882, 0.0784314, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_bfr1r"]
+texture = ExtResource("3_2cjxq")
+texture_margin_left = 32.0
+texture_margin_top = 32.0
+texture_margin_right = 32.0
+texture_margin_bottom = 40.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_32hcy"]
+texture = ExtResource("3_2cjxq")
+texture_margin_left = 32.0
+texture_margin_top = 32.0
+texture_margin_right = 32.0
+texture_margin_bottom = 40.0
+
+[node name="EndMenu" instance=ExtResource("1_g8qhe")]
+
+[node name="Background" parent="." index="0"]
+texture = ExtResource("2_rkpef")
+
+[node name="Text" parent="." index="1"]
+offset_left = -300.0
+offset_top = -22.0
+offset_right = 300.0
+offset_bottom = 106.0
+text = "Non hai risposto correttamente alle domande..."
+label_settings = SubResource("LabelSettings_8yncs")
+
+[node name="Back" parent="." index="3"]
+theme_override_styles/hover = SubResource("StyleBoxTexture_bfr1r")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_32hcy")
+
+[editable path="Play"]
+[editable path="Back"]
+[editable path="TopBar"]

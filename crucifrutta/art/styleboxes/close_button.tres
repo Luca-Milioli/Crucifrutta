@@ -1,0 +1,6 @@
+[gd_resource type="StyleBoxTexture" load_steps=2 format=3 uid="uid://j41qyryuoe82"]
+
+[ext_resource type="Texture2D" uid="uid://dq6fciy3ip5un" path="res://art/graphics/buttons/CloseButton.png" id="1_qfdh5"]
+
+[resource]
+texture = ExtResource("1_qfdh5")

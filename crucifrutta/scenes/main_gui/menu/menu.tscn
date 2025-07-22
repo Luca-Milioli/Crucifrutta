@@ -1,0 +1,65 @@
+[gd_scene load_steps=6 format=3 uid="uid://c1t2pn4wepmpt"]
+
+[ext_resource type="Script" uid="uid://dtlhil701dtfv" path="res://scripts/gui/main_ui/menu.gd" id="1_8w4bh"]
+[ext_resource type="Texture2D" uid="uid://d3icookgkrhft" path="res://art/graphics/backgrounds/StartMenuBackground.jpg" id="2_qcgma"]
+[ext_resource type="PackedScene" uid="uid://cixb2slrwfeax" path="res://scenes/components/buttons/custom_button.tscn" id="3_con2f"]
+[ext_resource type="FontFile" uid="uid://btuhlt2wotj04" path="res://art/font/SkippySharp.ttf" id="3_qcgma"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_con2f"]
+font = ExtResource("3_qcgma")
+font_size = 40
+font_color = Color(0.101961, 0.0705882, 0.0784314, 1)
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_8w4bh")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_qcgma")
+
+[node name="Text" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -242.5
+offset_top = 43.0
+offset_right = 242.5
+offset_bottom = 143.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Frutta e verdura ti aiutano
+anche in matematica!"
+label_settings = SubResource("LabelSettings_con2f")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Play" parent="." instance=ExtResource("3_con2f")]
+layout_mode = 1
+anchors_preset = 7
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -105.5
+offset_top = -138.0
+offset_right = 105.5
+offset_bottom = -64.0
+grow_vertical = 0
+
+[connection signal="tree_entered" from="." to="." method="_on_tree_entered"]
+[connection signal="pressed" from="Play" to="." method="_on_play_pressed"]
