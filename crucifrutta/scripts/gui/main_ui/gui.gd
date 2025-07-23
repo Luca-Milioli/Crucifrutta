@@ -24,7 +24,7 @@ func _on_answer_button_pressed() -> void:
 		await super.fade_in($Keyboard, 1.0, 0.8)
 		Utils.recursive_disable_buttons($Keyboard, false)
 	else:
-		GameLogic.answer_given(int($Blackboard/FinalEquation/Rhs.get_text()), $Blackboard/FinalEquation.get_equation())
+#		GameLogic.answer_given(int($Blackboard/FinalEquation/Rhs.get_text()), $Blackboard/FinalEquation.get_equation())
 		Utils.recursive_disable_buttons($AnswerButton, true)
 		await $Blackboard.kill()
 		$AnswerButton/Text.set_text("Inserisci risposta")

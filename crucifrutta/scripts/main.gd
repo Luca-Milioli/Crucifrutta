@@ -6,6 +6,7 @@ func _on_end_menu_back_pressed():
 func _on_menu_play_pressed() -> void:
 	var menu = get_node("Menu")
 	await menu.kill()
+	
 	remove_child(menu)
 	menu.queue_free()
 	
@@ -30,7 +31,6 @@ func _on_menu_play_pressed() -> void:
 
 func _on_reset():
 	GameLogic.reset()
-	SystemEquationsFactory.reset()
 	get_tree().reload_current_scene()
 
 func _create_rounds():
@@ -38,10 +38,14 @@ func _create_rounds():
 	
 	gui.get_node("ResetPopup/SplitContainer/Go").pressed.connect(_on_reset)
 	add_child(gui)
+	
 	for i in range(GameLogic.MAX_ROUND):
-		var system_equation = SystemEquationsFactory.make_system_equation()
+		var crossword = CrosswordFactory.create_crossword()
+		print(crossword._to_string())
 		
-		$Gui/Blackboard.setup(system_equation)
+		#$Gui/Blackboard.setup(system_equation)
 		
-		await $Gui/Blackboard.killed
+		#await $Gui/Blackboard.killed
+		
+		await GameLogic.crossword_finished
 	gui.game_over()

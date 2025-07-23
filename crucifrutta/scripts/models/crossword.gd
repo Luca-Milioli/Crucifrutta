@@ -1,11 +1,11 @@
-extends CommonModels
+
 
 class_name Crossword
 
-var _crossword_items : Array[Crossword]
+var _crossword_items : Array[CrosswordItem]
 
-func _init(crossword_items : Array[Crossword]) -> void:
-	super._set("_crossword_items", crossword_items)
+func _init(crossword_items : Array[CrosswordItem]) -> void:
+	set("_crossword_items", crossword_items)
 
 func calculate_final_word() -> String:
 	var final_word = ""
@@ -19,9 +19,9 @@ func _to_string() -> String:
 	var i = 1
 	
 	for word in self._crossword_items:
-		text += "----------------------"
+		text += "----------------------\n"
 		text += "Word " + str(i) + "\n"
-		word.to_string()
+		text += word.to_string() + "\n"
 		i += 1
 	
 	text += "\nHighlight word: " + calculate_final_word()

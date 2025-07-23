@@ -19,18 +19,18 @@ func read_csv(separator: String = ",") -> Array:
 		var line = file.get_line().strip_edges()
 		if line == separator or line.is_empty():	# empty word
 			data.append(null)	# empty word, gray square
-			break
-		file.seek(pos)	# bring back cursor
-		
-		var attributes = file.get_csv_line(separator)
-		
-		# attributes[0] = "cruciverbaN"
-		var row_data : Dictionary = {
-			"definition": attributes[1],
-			"answer": attributes[2],
-			"intersection": attributes[3],
-		}
-		data.append(row_data)
+		else:
+			file.seek(pos)	# bring back cursor
+			
+			var attributes = file.get_csv_line(separator)
+			
+			# attributes[0] = "cruciverbaN"
+			var row_data : Dictionary = {
+				"definition": attributes[1],
+				"answer": attributes[2],
+				"intersection": attributes[3],
+			}
+			data.append(row_data)
 	
 	file.close()
 	return data
