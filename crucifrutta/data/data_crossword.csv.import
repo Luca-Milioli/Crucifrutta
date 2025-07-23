@@ -1,0 +1,17 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://c5l6f0xd628dj"
+
+[deps]
+
+files=["res://data/data_crossword.DEFINIZIONE (80 ch MAX).translation", "res://data/data_crossword.PAROLA (10 ch MAX).translation", "res://data/data_crossword.INCROCIO.translation"]
+
+source_file="res://data/data_crossword.csv"
+dest_files=["res://data/data_crossword.DEFINIZIONE (80 ch MAX).translation", "res://data/data_crossword.PAROLA (10 ch MAX).translation", "res://data/data_crossword.INCROCIO.translation"]
+
+[params]
+
+compress=true
+delimiter=0
