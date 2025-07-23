@@ -32,5 +32,6 @@ func _to_string() -> String:
 	text += "\nShift from center y : " + str(shift.y)
 	
 	return text
-	
-	
+
+func get_length() -> int:
+	return self._answer.length()

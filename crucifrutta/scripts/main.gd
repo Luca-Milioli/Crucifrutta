@@ -41,7 +41,7 @@ func _create_rounds():
 	
 	for i in range(GameLogic.MAX_ROUND):
 		var crossword = CrosswordFactory.create_crossword()
-		print(crossword._to_string())
+		print(crossword.to_matrix())
 		
 		#$Gui/Blackboard.setup(system_equation)
 		
