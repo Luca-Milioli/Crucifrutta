@@ -1,10 +1,13 @@
 extends Node
 class_name DataManager
 
-const DATA_PATH = "res://data/data_equation.csv"
-var data : Array
+const DATA_PATH = "res://data/data_crossword.csv"
+var data: Array
 
-func read_csv(separator = ",") -> Array:
+func read_csv(separator: String = ",") -> Array:
+	if not data.is_empty():
+		return data
+	
 	var file := FileAccess.open(self.DATA_PATH, FileAccess.READ)
 
 	if not file:
@@ -12,39 +15,22 @@ func read_csv(separator = ",") -> Array:
 		return []
 
 	while not file.eof_reached():
-		var system = []
-		while not file.eof_reached():
-			var pos = file.get_position()
-			var line = file.get_line().strip_edges()
-			if line == separator or line.is_empty():	# end of system
-				break
-			file.seek(pos)	# if not end of system, bring back cursor
-			
-			var row_data : Dictionary = {
-				"coeff" : [],
-				"var" : [],
-				"value" : [],
-				"sign" : [],
-			}
+		var pos = file.get_position()
+		var line = file.get_line().strip_edges()
+		if line == separator or line.is_empty():	# empty word
+			data.append(null)	# empty word, gray square
+			break
+		file.seek(pos)	# bring back cursor
 		
-			var attributes = file.get_csv_line(separator)
-			for i in range(attributes.size()):
-				var value = attributes[i]
-				var key : StringName
-				match (i % 4):
-					0:
-						key = "coeff"
-						value = int(value)
-					1:
-						key = "var"
-					2:
-						key = "value"
-						value = int(value)
-					3:
-						key = "sign"
-				row_data[key].append(value)
-			system.append(row_data)
-		data.append(system)
+		var attributes = file.get_csv_line(separator)
+		
+		# attributes[0] = "cruciverbaN"
+		var row_data : Dictionary = {
+			"definition": attributes[1],
+			"answer": attributes[2],
+			"intersection": attributes[3],
+		}
+		data.append(row_data)
 	
 	file.close()
 	return data
