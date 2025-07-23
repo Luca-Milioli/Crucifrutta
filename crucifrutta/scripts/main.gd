@@ -35,16 +35,26 @@ func _on_reset():
 
 func _create_rounds():
 	var gui = preload("res://scenes/main_gui/gui.tscn").instantiate()
+	var crossword_gui_path = preload("res://scenes/components/crossword.tscn")
 	
 	gui.get_node("ResetPopup/SplitContainer/Go").pressed.connect(_on_reset)
 	add_child(gui)
 	
 	for i in range(GameLogic.MAX_ROUND):
 		var crossword = CrosswordFactory.create_crossword()
-		print(crossword.to_matrix())
+		var crossword_gui = crossword_gui_path.instantiate()
+		var length = crossword.get_length()
+		
+		crossword_gui.set("columns", length)
+		crossword_gui.setup(crossword.to_matrix(), crossword.column_highlighted())
+		crossword_gui.set("size.x", 36 * length)
+		crossword_gui.set("size.y", 36 * length)
+		
+		
+		gui.add_child(crossword_gui)
 		
 		#$Gui/Blackboard.setup(system_equation)
-		
+
 		#await $Gui/Blackboard.killed
 		
 		await GameLogic.crossword_finished

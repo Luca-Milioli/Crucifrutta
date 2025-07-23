@@ -1,21 +1,17 @@
 [gd_scene load_steps=5 format=3 uid="uid://b8u7k0udc04la"]
 
 [ext_resource type="Texture2D" uid="uid://p7j4b37cuv7w" path="res://art/graphics/KeyboardDisplay.png" id="1_3qeg2"]
-[ext_resource type="Texture2D" uid="uid://bihfea8it5yl8" path="res://art/graphics/DisplayHover.png" id="2_t0lj3"]
-[ext_resource type="Texture2D" uid="uid://b6668wive2076" path="res://art/graphics/Display.png" id="3_ho55f"]
+[ext_resource type="Texture2D" uid="uid://c3skt1k8no8jm" path="res://art/graphics/slots/SlotHover.png" id="2_hnhp4"]
+[ext_resource type="Texture2D" uid="uid://b6668wive2076" path="res://art/graphics/slots/Display.png" id="3_ho55f"]
 [ext_resource type="LabelSettings" uid="uid://dbdr0y0y4dqxw" path="res://art/styleboxes/label_settings_28.tres" id="4_t0lj3"]
 
 [node name="CharBox" type="TextureButton"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = -1116.0
-offset_bottom = -612.0
-grow_horizontal = 2
-grow_vertical = 2
+custom_minimum_size = Vector2(36, 36)
+offset_right = 36.0
+offset_bottom = 36.0
 texture_normal = ExtResource("1_3qeg2")
-texture_pressed = ExtResource("2_t0lj3")
-texture_hover = ExtResource("2_t0lj3")
+texture_pressed = ExtResource("2_hnhp4")
+texture_hover = ExtResource("2_hnhp4")
 texture_disabled = ExtResource("3_ho55f")
 ignore_texture_size = true
 stretch_mode = 0

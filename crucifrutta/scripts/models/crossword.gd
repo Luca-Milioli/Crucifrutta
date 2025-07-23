@@ -60,8 +60,8 @@ func get_height() -> int:
 func column_highlighted() -> int:
 	return left_length() + 1
 
-func to_matrix() -> Array:
-	var matrix: Array
+func to_matrix() -> Array[Array]:
+	var matrix: Array[Array]
 	var left_length = left_length()
 	var right_length = right_length()
 	

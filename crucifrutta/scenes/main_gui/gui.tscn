@@ -1,50 +1,10 @@
-[gd_scene load_steps=19 format=3 uid="uid://b8srycxdomt88"]
+[gd_scene load_steps=6 format=3 uid="uid://b8srycxdomt88"]
 
 [ext_resource type="PackedScene" uid="uid://bieiqc1mo6u2r" path="res://scenes/components/top_bar.tscn" id="1_53q0q"]
-[ext_resource type="Script" uid="uid://bfkqw3vumi2fi" path="res://scripts/gui/main_ui/gui.gd" id="1_fvce3"]
+[ext_resource type="Script" uid="uid://c4eqkfow0fdll" path="res://scripts/gui/main_ui/gui.gd" id="1_fvce3"]
 [ext_resource type="PackedScene" uid="uid://mgklm4qm7xq8" path="res://scenes/components/popups/tutorial.tscn" id="2_8h14w"]
-[ext_resource type="PackedScene" uid="uid://bn5tlh1a225fr" path="res://scenes/components/blackboard.tscn" id="2_53q0q"]
-[ext_resource type="Texture2D" uid="uid://d0wd7mlmu7bhm" path="res://art/graphics/backgrounds/GuiBackground.jpg" id="2_k8xsf"]
+[ext_resource type="Texture2D" uid="uid://dj1j6xry0fiqv" path="res://art/graphics/backgrounds/GuiBackground.jpg" id="2_k8xsf"]
 [ext_resource type="PackedScene" uid="uid://b58mhp2m3rr8y" path="res://scenes/components/popups/reset_popup.tscn" id="3_k8xsf"]
-[ext_resource type="PackedScene" uid="uid://cixb2slrwfeax" path="res://scenes/components/buttons/custom_button.tscn" id="3_ocqor"]
-[ext_resource type="FontFile" uid="uid://c3ii6qbpg4ulc" path="res://art/font/Roc_Grotesk_Bold.ttf" id="4_8h14w"]
-[ext_resource type="PackedScene" uid="uid://cij8bimtkjtsw" path="res://scenes/components/keyboard.tscn" id="9_gn6ma"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_k8xsf"]
-font = ExtResource("4_8h14w")
-font_size = 32
-font_color = Color(0.0588235, 0.47451, 0.529412, 1)
-
-[sub_resource type="InputEventKey" id="InputEventKey_gn6ma"]
-keycode = 4194309
-
-[sub_resource type="InputEventKey" id="InputEventKey_w77y4"]
-device = -1
-keycode = 4194310
-
-[sub_resource type="Shortcut" id="Shortcut_q406m"]
-events = [SubResource("InputEventKey_gn6ma"), SubResource("InputEventKey_w77y4")]
-
-[sub_resource type="InputEventKey" id="InputEventKey_2trg8"]
-device = -1
-pressed = true
-keycode = 4194308
-
-[sub_resource type="InputEventKey" id="InputEventKey_pstwf"]
-device = -1
-pressed = true
-keycode = 4194312
-
-[sub_resource type="Shortcut" id="Shortcut_ujfw1"]
-events = [SubResource("InputEventKey_2trg8"), SubResource("InputEventKey_pstwf")]
-
-[sub_resource type="InputEventKey" id="InputEventKey_q406m"]
-device = -1
-pressed = true
-keycode = 4194305
-
-[sub_resource type="Shortcut" id="Shortcut_2trg8"]
-events = [SubResource("InputEventKey_q406m")]
 
 [node name="Gui" type="Control"]
 modulate = Color(1, 1, 1, 0)
@@ -89,72 +49,8 @@ offset_top = 37.0
 offset_right = 906.0
 offset_bottom = 101.0
 
-[node name="Blackboard" parent="." instance=ExtResource("2_53q0q")]
-visible = false
-layout_mode = 1
-offset_left = 229.0
-offset_top = 143.0
-offset_right = -228.0
-offset_bottom = -185.0
-
-[node name="AnswerButton" parent="." instance=ExtResource("3_ocqor")]
-layout_mode = 1
-anchors_preset = 7
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = -187.0
-offset_top = -127.0
-offset_right = 188.0
-offset_bottom = -55.0
-grow_vertical = 0
-
-[node name="Text" parent="AnswerButton" index="0"]
-text = "Inserisci risposta"
-label_settings = SubResource("LabelSettings_k8xsf")
-
-[node name="Keyboard" parent="." instance=ExtResource("9_gn6ma")]
-visible = false
-modulate = Color(1, 1, 1, 0)
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -138.0
-offset_top = -250.0
-offset_right = 138.0
-offset_bottom = 250.0
-
-[node name="Confirm" parent="Keyboard" index="3"]
-shortcut = SubResource("Shortcut_q406m")
-
-[node name="Backspace" parent="Keyboard" index="4"]
-shortcut = SubResource("Shortcut_ujfw1")
-
-[node name="CloseButton" parent="Keyboard" index="5"]
-shortcut = SubResource("Shortcut_2trg8")
-
 [connection signal="tree_entered" from="." to="." method="_on_tree_entered"]
 [connection signal="game_start" from="TutorialPopup" to="." method="_on_tutorial_popup_game_start"]
 [connection signal="cancel" from="ResetPopup" to="." method="_on_reset_popup_cancel"]
 [connection signal="audio_pressed" from="TopBar" to="." method="_on_top_bar_audio_pressed"]
 [connection signal="retry_pressed" from="TopBar" to="." method="_on_top_bar_retry_pressed"]
-[connection signal="pressed" from="AnswerButton" to="." method="_on_answer_button_pressed"]
-[connection signal="pressed" from="Keyboard/Confirm" to="." method="_on_confirm_pressed"]
-[connection signal="pressed" from="Keyboard/Confirm" to="Blackboard" method="_on_confirm_pressed"]
-[connection signal="pressed" from="Keyboard/CloseButton" to="." method="_on_close_button_pressed"]
-
-[editable path="AnswerButton"]
-[editable path="Keyboard"]
-[editable path="Keyboard/ButtonsContainer/Button1"]
-[editable path="Keyboard/ButtonsContainer/Button2"]
-[editable path="Keyboard/ButtonsContainer/Button3"]
-[editable path="Keyboard/ButtonsContainer/Button4"]
-[editable path="Keyboard/ButtonsContainer/Button5"]
-[editable path="Keyboard/ButtonsContainer/Button6"]
-[editable path="Keyboard/ButtonsContainer/Button7"]
-[editable path="Keyboard/ButtonsContainer/Button8"]
-[editable path="Keyboard/ButtonsContainer/Button9"]
-[editable path="Keyboard/ButtonsContainer/Button0"]
-[editable path="Keyboard/Confirm"]
