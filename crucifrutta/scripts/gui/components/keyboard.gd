@@ -9,7 +9,8 @@ func _ready() -> void:
 	$CloseButton.toggle_mode = false
 
 func reset():
-	pass#$Background/Display/Label.set_text("Insert result...")
+	$Background/Display/Label.set_text("Insert word...")
+	$Keyboard.visible = false
 	
 func _connect_buttons(node):
 	for child in node.get_children():

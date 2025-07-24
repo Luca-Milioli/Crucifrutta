@@ -1,15 +1,15 @@
 [gd_scene load_steps=14 format=3 uid="uid://dw0mpg87f3big"]
 
-[ext_resource type="Script" uid="uid://bw7xbc77xqslh" path="res://scripts/gui/components/keyboard.gd" id="1_1yngc"]
+[ext_resource type="Script" uid="uid://bj11vva3415qv" path="res://scripts/gui/components/keyboard.gd" id="1_1yngc"]
 [ext_resource type="Texture2D" uid="uid://drkk1282juv30" path="res://art/graphics/buttons/CloseButton.png" id="1_crq44"]
 [ext_resource type="Texture2D" uid="uid://b3gfi7h5kagc" path="res://art/graphics/buttons/CloseHover.png" id="2_1hbf5"]
 [ext_resource type="Texture2D" uid="uid://ddmktaytpr4m6" path="res://art/graphics/Confirm.png" id="3_lowah"]
 [ext_resource type="FontFile" uid="uid://hbsghem7xpj3" path="res://art/font/Roc_Grotesk_Medium.ttf" id="4_1yngc"]
-[ext_resource type="Texture2D" uid="uid://djn5k8l6sodab" path="res://art/graphics/slots/Display.png" id="5_drl6p"]
+[ext_resource type="Texture2D" uid="uid://b6668wive2076" path="res://art/graphics/slots/Display.png" id="5_drl6p"]
 [ext_resource type="FontFile" uid="uid://o7lywgnhixr4" path="res://art/font/Roc_Grotesk_Bold.ttf" id="6_hy5n8"]
 [ext_resource type="PackedScene" uid="uid://cixb2slrwfeax" path="res://scenes/components/buttons/custom_button.tscn" id="7_hl3es"]
-[ext_resource type="Texture2D" uid="uid://dgwts6u7b4kax" path="res://art/graphics/buttons/Backspace.png" id="7_lowah"]
-[ext_resource type="Texture2D" uid="uid://c7b6buwymwpv3" path="res://art/graphics/buttons/BackspaceHover.png" id="8_1yngc"]
+[ext_resource type="Texture2D" uid="uid://cw21td1sksm5q" path="res://art/graphics/buttons/Backspace.png" id="7_lowah"]
+[ext_resource type="Texture2D" uid="uid://dsdpc2p1yqnob" path="res://art/graphics/buttons/BackspaceHover.png" id="8_1yngc"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_l2n0x"]
 font = ExtResource("4_1yngc")
@@ -109,7 +109,7 @@ offset_right = 43.0
 offset_bottom = 17.5
 grow_horizontal = 2
 grow_vertical = 2
-text = "AAA"
+text = "Insert word..."
 label_settings = SubResource("LabelSettings_m34w1")
 horizontal_alignment = 1
 vertical_alignment = 1

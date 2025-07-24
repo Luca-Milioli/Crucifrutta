@@ -3,7 +3,7 @@ extends GridContainer
 signal spawn_keyboard
 
 var _child_list : Array = []
-var _selected_row : Array = []
+var _selected_row_boxes : Array = []
 
 func setup(charMatrix : Array[Array], highlighted_column : int):
 	var charbox_to_instantiate = preload("res://scenes/components/char_box.tscn")
@@ -12,6 +12,7 @@ func setup(charMatrix : Array[Array], highlighted_column : int):
 	var orange_texture = preload("res://art/graphics/slots/OrangeSlot.png")
 	var orange_texture_hover = preload("res://art/graphics/slots/OrangeHoverSlot.png")
 	
+	var j = 0
 	for row in charMatrix:
 		var i = 0
 		for char in row:
@@ -19,19 +20,24 @@ func setup(charMatrix : Array[Array], highlighted_column : int):
 			match char:
 				"":
 					box = emptybox_to_instantiate.instantiate()
+					box.set_name("empty:"+str(i + (j * get("columns"))))
 				null:
 					box = graybox_to_instantiate.instantiate()
+					box.set_name("gray:"+str(i + (j * get("columns"))))
 				_:
 					box = charbox_to_instantiate.instantiate()
+					box.set_name("default:"+str(i + (j * get("columns"))))
 					if i == highlighted_column:
 						box.set("texture_normal", orange_texture)
 						box.set("texture_disabled", orange_texture)
 						box.set("texture_hover", orange_texture_hover)
 						box.set("texture_pressed", orange_texture_hover)
-					box.connect("pressed", _on_charbox_clicked.bind(row))
+						
+					box.connect("pressed", _on_charbox_clicked.bind(charMatrix.find(row)))
 			
 			self._child_list.append(box)
 			i += 1
+		j += 1
 
 func _on_timer_timeout() -> void:
 	add_child(self._child_list.pop_front())
@@ -45,19 +51,21 @@ func _on_timer_timeout() -> void:
 		
 	$Timer.start()
 
-func _on_charbox_clicked(row):
+func _on_charbox_clicked(row_index : int):
 	self.spawn_keyboard.emit()
-	self._selected_row = row
-
-func _on_confirm_pressed() -> void:
-	var text : String = $"../Keyboard/Display/Label".get_text()
 	
+	var start_index = self.get("columns") * row_index + 1 # timer is first
+	var end_index = start_index + self.get("columns")
+	self._selected_row_boxes = get_children().slice(start_index, end_index)
+
+func change_row_text(text) -> void:
 	var i = 0
-	while self._selected_row[i] is not CharBox:
+	
+	while self._selected_row_boxes[i] is not CharBox:
 		i+=1
 	
 	var j = 0
-	while self._selected_row[i] is CharBox:
-		self._selected_row[i] = text[j]
+	while self._selected_row_boxes[i + j] is CharBox and j < text.length():
+		(self._selected_row_boxes[i + j] as Node).get_node("Char").set_text(text[j])
 		j += 1
 	

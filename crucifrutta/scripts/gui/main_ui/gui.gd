@@ -39,6 +39,8 @@ func crossword_setup(crossword: Crossword, crossword_gui: GridContainer) -> void
 
 func spawn_keyboard() -> void:
 	$Keyboard.visible = true
+	Utils.recursive_disable_buttons(self, true)
+	Utils.recursive_disable_buttons($Keyboard, false)
 	super.fade_in($Keyboard, 1.0, 0.8)
 
 func crossword_finished() -> void:
@@ -52,3 +54,8 @@ func _close_keyboard() -> void:
 
 func _on_close_button_pressed() -> void:
 	_close_keyboard()
+
+
+func _on_confirm_pressed() -> void:
+	var text : String = $Keyboard/Background/Display/Label.get_text()
+	$Crossword.change_row_text(text)
