@@ -11,6 +11,9 @@ func _ready() -> void:
 func reset():
 	$Background/Display/Label.set_text("")
 	self.visible = false
+
+func set_definition(text : String):
+	$Definition/Label.set_text(text)
 	
 func _create_button(letter: String) -> Button:
 	var button = preload("res://scenes/components/buttons/square_button.tscn").instantiate()
@@ -32,7 +35,7 @@ func _create_buttons() -> void:
 func _new_text(button_pressed) -> String:
 	var text = $Background/Display/Label.get_text() as String
 	
-	if button_pressed == $Background/Keyboard/Backspace:
+	if button_pressed == $Background/Keyboard/ThirdRow/Backspace:
 		text = text.substr(0, text.length() - 1)
 		return text
 	

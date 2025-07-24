@@ -62,14 +62,17 @@ offset_top = -734.0
 offset_bottom = 0.0
 grow_vertical = 0
 
+[node name="Label" parent="Keyboard/Background/Display" index="0"]
+text = "Insert word..."
+
 [connection signal="tree_entered" from="." to="." method="_on_tree_entered"]
 [connection signal="game_start" from="TutorialPopup" to="." method="_on_tutorial_popup_game_start"]
 [connection signal="cancel" from="ResetPopup" to="." method="_on_reset_popup_cancel"]
 [connection signal="audio_pressed" from="TopBar" to="." method="_on_top_bar_audio_pressed"]
 [connection signal="retry_pressed" from="TopBar" to="." method="_on_top_bar_retry_pressed"]
 [connection signal="pressed" from="Keyboard/CloseButton" to="." method="_on_close_button_pressed"]
-[connection signal="pressed" from="Keyboard/Background/Confirm" to="." method="_on_confirm_pressed"]
 [connection signal="pressed" from="Keyboard/Background/Confirm" to="." method="_on_close_button_pressed"]
+[connection signal="pressed" from="Keyboard/Background/Confirm" to="." method="_on_confirm_pressed"]
 
 [editable path="Keyboard"]
 [editable path="Keyboard/Background/Confirm"]

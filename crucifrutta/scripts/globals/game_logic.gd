@@ -22,7 +22,7 @@ func get_current_crossword(crossword: Crossword) -> Crossword:
 func get_answer(index: int) -> String:
 	return self._current_crossword.get("_crossword_items")[index].get("_answer")
 
-func get_definition(index: int) -> String:
+func get_item_definition(index: int) -> String:
 	return self._current_crossword.get("_crossword_items")[index].get("_definition")
 
 func set_total_words(n_words: int) -> void:
