@@ -4,21 +4,30 @@ var is_dragging: bool = false
 var drag_offset: Vector2
 
 func _ready() -> void:
-	_connect_buttons(self)
-	$Background/Keyboard/Backspace.toggle_mode = false
-	$CloseButton.toggle_mode = false
+	_create_buttons()
+	$Background/Keyboard/ThirdRow/Backspace.connect("pressed", _on_button_pressed.bind($Background/Keyboard/ThirdRow/Backspace))
+	$Background/Keyboard/ThirdRow.move_child($Background/Keyboard/ThirdRow/Backspace, -1)
 
 func reset():
-	$Background/Display/Label.set_text("Insert word...")
-	$Keyboard.visible = false
+	$Background/Display/Label.set_text("")
+	self.visible = false
 	
-func _connect_buttons(node):
-	for child in node.get_children():
-		if child is BaseButton and child != $CloseButton:
-			child.toggle_mode = true
-			child.connect("pressed", _on_button_pressed.bind(child))
-		else:
-			_connect_buttons(child)
+func _create_button(letter: String) -> Button:
+	var button = preload("res://scenes/components/buttons/square_button.tscn").instantiate()
+	button.get_node("Text").set_text(letter)
+	button.set_name("Button" + letter)
+	button.connect("pressed", _on_button_pressed.bind(button))
+	return button
+
+func _create_buttons() -> void:
+	var rows = ["QWERTYUIOP", "ASDFGHJKL", "ZXCVBNM"]
+	
+	var i = 0
+	for child in $Background/Keyboard.get_children():
+		if child is HBoxContainer:
+			for letter in rows[i]:
+				child.add_child(_create_button(letter))
+			i += 1
 
 func _new_text(button_pressed) -> String:
 	var text = $Background/Display/Label.get_text() as String

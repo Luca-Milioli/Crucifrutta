@@ -21,7 +21,9 @@ func _on_tutorial_popup_game_start() -> void:
 func kill() -> void:
 	await super.fade_out(self, 0.4)
 
-func crossword_setup(crossword: Crossword, crossword_gui: GridContainer) -> void:
+func crossword_setup(crossword: Crossword) -> void:
+	var crossword_gui = preload("res://scenes/components/crossword.tscn").instantiate()
+	
 	const size_box = Vector2(36, 36)
 	var separation = Vector2(crossword_gui.get_theme_constant("h_separation"), crossword_gui.get_theme_constant("v_separation"))
 	var length = crossword.get_length()
@@ -55,7 +57,11 @@ func _close_keyboard() -> void:
 func _on_close_button_pressed() -> void:
 	_close_keyboard()
 
-
 func _on_confirm_pressed() -> void:
 	var text : String = $Keyboard/Background/Display/Label.get_text()
 	$Crossword.change_row_text(text)
+	
+	if GameLogic.answer_given(text, $Crossword.get_selected_row_index()):
+		pass
+	else:
+		$Crossword.clear_row_text()

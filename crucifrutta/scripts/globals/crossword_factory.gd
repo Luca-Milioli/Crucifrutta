@@ -2,7 +2,6 @@ extends DataManager
 
 func create_crossword() -> Crossword:
 	var n_words = super.read_csv().size()
-	GameLogic.set_total_words(n_words)
 	
 	var crossword_items: Array[CrosswordItem]
 	for i in n_words:
@@ -13,4 +12,6 @@ func create_crossword() -> Crossword:
 		else:
 			crossword_item = CrosswordItem.new("", "", "")
 		crossword_items.append(crossword_item)
-	return Crossword.new(crossword_items)
+	var crossword = Crossword.new(crossword_items)
+	GameLogic.set_current_crossword(crossword)
+	return crossword

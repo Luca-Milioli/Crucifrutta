@@ -28,16 +28,14 @@ func _on_reset():
 
 func _create_rounds():
 	var gui = preload("res://scenes/main_gui/gui.tscn").instantiate()
-	var crossword_gui_path = preload("res://scenes/components/crossword.tscn")
 	
 	gui.get_node("ResetPopup/SplitContainer/Go").pressed.connect(_on_reset)
 	add_child(gui)
 	
 	for i in range(GameLogic.MAX_ROUND):
 		var crossword = CrosswordFactory.create_crossword()
-		var crossword_gui = crossword_gui_path.instantiate()
 		
-		gui.crossword_setup(crossword, crossword_gui)
+		gui.crossword_setup(crossword)
 		
 		await GameLogic.crossword_finished
 		

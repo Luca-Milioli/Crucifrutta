@@ -1,15 +1,15 @@
 [gd_scene load_steps=14 format=3 uid="uid://dw0mpg87f3big"]
 
-[ext_resource type="Script" uid="uid://bj11vva3415qv" path="res://scripts/gui/components/keyboard.gd" id="1_1yngc"]
+[ext_resource type="Script" uid="uid://bw7xbc77xqslh" path="res://scripts/gui/components/keyboard.gd" id="1_1yngc"]
 [ext_resource type="Texture2D" uid="uid://drkk1282juv30" path="res://art/graphics/buttons/CloseButton.png" id="1_crq44"]
 [ext_resource type="Texture2D" uid="uid://b3gfi7h5kagc" path="res://art/graphics/buttons/CloseHover.png" id="2_1hbf5"]
 [ext_resource type="Texture2D" uid="uid://ddmktaytpr4m6" path="res://art/graphics/Confirm.png" id="3_lowah"]
 [ext_resource type="FontFile" uid="uid://hbsghem7xpj3" path="res://art/font/Roc_Grotesk_Medium.ttf" id="4_1yngc"]
-[ext_resource type="Texture2D" uid="uid://b6668wive2076" path="res://art/graphics/slots/Display.png" id="5_drl6p"]
+[ext_resource type="Texture2D" uid="uid://djn5k8l6sodab" path="res://art/graphics/slots/Display.png" id="5_drl6p"]
 [ext_resource type="FontFile" uid="uid://o7lywgnhixr4" path="res://art/font/Roc_Grotesk_Bold.ttf" id="6_hy5n8"]
 [ext_resource type="PackedScene" uid="uid://cixb2slrwfeax" path="res://scenes/components/buttons/custom_button.tscn" id="7_hl3es"]
-[ext_resource type="Texture2D" uid="uid://cw21td1sksm5q" path="res://art/graphics/buttons/Backspace.png" id="7_lowah"]
-[ext_resource type="Texture2D" uid="uid://dsdpc2p1yqnob" path="res://art/graphics/buttons/BackspaceHover.png" id="8_1yngc"]
+[ext_resource type="StyleBox" uid="uid://c7hryig40ppqk" path="res://art/styleboxes/backspace_normal.tres" id="8_lowah"]
+[ext_resource type="StyleBox" uid="uid://01u7mm0o3dy2" path="res://art/styleboxes/backspace_hover.tres" id="9_1yngc"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_l2n0x"]
 font = ExtResource("4_1yngc")
@@ -109,13 +109,12 @@ offset_right = 43.0
 offset_bottom = 17.5
 grow_horizontal = 2
 grow_vertical = 2
-text = "Insert word..."
 label_settings = SubResource("LabelSettings_m34w1")
 horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
 
-[node name="Keyboard" type="GridContainer" parent="Background"]
+[node name="Keyboard" type="VBoxContainer" parent="Background"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -128,19 +127,34 @@ offset_right = 365.0
 offset_bottom = 120.5
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/h_separation = 10
-theme_override_constants/v_separation = 10
-columns = 10
+theme_override_constants/separation = 10
 
-[node name="Backspace" type="TextureButton" parent="Background/Keyboard"]
+[node name="FirstRow" type="HBoxContainer" parent="Background/Keyboard"]
+custom_minimum_size = Vector2(730, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 10
+
+[node name="SecondRow" type="HBoxContainer" parent="Background/Keyboard"]
+custom_minimum_size = Vector2(656, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 10
+
+[node name="ThirdRow" type="HBoxContainer" parent="Background/Keyboard"]
+custom_minimum_size = Vector2(618, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 10
+
+[node name="Backspace" type="Button" parent="Background/Keyboard/ThirdRow"]
 custom_minimum_size = Vector2(100, 64)
 layout_mode = 2
-texture_normal = ExtResource("7_lowah")
-texture_pressed = ExtResource("8_1yngc")
-texture_hover = ExtResource("8_1yngc")
-texture_disabled = ExtResource("7_lowah")
-ignore_texture_size = true
-stretch_mode = 0
+focus_mode = 0
+theme_override_styles/disabled = ExtResource("8_lowah")
+theme_override_styles/hover = ExtResource("9_1yngc")
+theme_override_styles/pressed = ExtResource("9_1yngc")
+theme_override_styles/normal = ExtResource("8_lowah")
 
 [node name="Confirm" parent="Background" instance=ExtResource("7_hl3es")]
 layout_mode = 1

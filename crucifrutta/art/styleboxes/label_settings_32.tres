@@ -1,6 +1,6 @@
 [gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://dca8ghc2m7vq5"]
 
-[ext_resource type="FontFile" uid="uid://c3ii6qbpg4ulc" path="res://art/font/Roc_Grotesk_Bold.ttf" id="1_q5gmn"]
+[ext_resource type="FontFile" uid="uid://o7lywgnhixr4" path="res://art/font/Roc_Grotesk_Bold.ttf" id="1_q5gmn"]
 
 [resource]
 font = ExtResource("1_q5gmn")

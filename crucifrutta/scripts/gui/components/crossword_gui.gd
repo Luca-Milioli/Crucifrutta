@@ -3,7 +3,11 @@ extends GridContainer
 signal spawn_keyboard
 
 var _child_list : Array = []
+var _selected_row_index: int
 var _selected_row_boxes : Array = []
+
+func get_selected_row_index() -> int:
+	return self._selected_row_index
 
 func setup(charMatrix : Array[Array], highlighted_column : int):
 	var charbox_to_instantiate = preload("res://scenes/components/char_box.tscn")
@@ -54,6 +58,8 @@ func _on_timer_timeout() -> void:
 func _on_charbox_clicked(row_index : int):
 	self.spawn_keyboard.emit()
 	
+	self._selected_row_index = row_index
+	
 	var start_index = self.get("columns") * row_index + 1 # timer is first
 	var end_index = start_index + self.get("columns")
 	self._selected_row_boxes = get_children().slice(start_index, end_index)
@@ -68,4 +74,8 @@ func change_row_text(text) -> void:
 	while self._selected_row_boxes[i + j] is CharBox and j < text.length():
 		(self._selected_row_boxes[i + j] as Node).get_node("Char").set_text(text[j])
 		j += 1
-	
+
+func clear_row_text() -> void:
+	for box in self._selected_row_boxes:
+		if box is CharBox:
+			box.get_node("Char").set_text("")
