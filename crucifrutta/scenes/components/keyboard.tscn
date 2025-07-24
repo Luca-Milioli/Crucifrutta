@@ -1,15 +1,23 @@
-[gd_scene load_steps=14 format=3 uid="uid://dw0mpg87f3big"]
+[gd_scene load_steps=22 format=3 uid="uid://dw0mpg87f3big"]
 
-[ext_resource type="Script" uid="uid://bj11vva3415qv" path="res://scripts/gui/components/keyboard.gd" id="1_1yngc"]
+[ext_resource type="Script" uid="uid://bw7xbc77xqslh" path="res://scripts/gui/components/keyboard.gd" id="1_1yngc"]
 [ext_resource type="Texture2D" uid="uid://drkk1282juv30" path="res://art/graphics/buttons/CloseButton.png" id="1_crq44"]
 [ext_resource type="Texture2D" uid="uid://b3gfi7h5kagc" path="res://art/graphics/buttons/CloseHover.png" id="2_1hbf5"]
 [ext_resource type="Texture2D" uid="uid://ddmktaytpr4m6" path="res://art/graphics/Confirm.png" id="3_lowah"]
 [ext_resource type="FontFile" uid="uid://hbsghem7xpj3" path="res://art/font/Roc_Grotesk_Medium.ttf" id="4_1yngc"]
-[ext_resource type="Texture2D" uid="uid://b6668wive2076" path="res://art/graphics/slots/Display.png" id="5_drl6p"]
+[ext_resource type="Texture2D" uid="uid://djn5k8l6sodab" path="res://art/graphics/slots/Display.png" id="5_drl6p"]
 [ext_resource type="FontFile" uid="uid://o7lywgnhixr4" path="res://art/font/Roc_Grotesk_Bold.ttf" id="6_hy5n8"]
 [ext_resource type="PackedScene" uid="uid://cixb2slrwfeax" path="res://scenes/components/buttons/custom_button.tscn" id="7_hl3es"]
 [ext_resource type="StyleBox" uid="uid://c7hryig40ppqk" path="res://art/styleboxes/backspace_normal.tres" id="8_lowah"]
 [ext_resource type="StyleBox" uid="uid://01u7mm0o3dy2" path="res://art/styleboxes/backspace_hover.tres" id="9_1yngc"]
+
+[sub_resource type="InputEventKey" id="InputEventKey_hl3es"]
+device = -1
+pressed = true
+keycode = 4194305
+
+[sub_resource type="Shortcut" id="Shortcut_l2n0x"]
+events = [SubResource("InputEventKey_hl3es")]
 
 [sub_resource type="LabelSettings" id="LabelSettings_l2n0x"]
 font = ExtResource("4_1yngc")
@@ -20,6 +28,32 @@ font_color = Color(0, 0, 0, 1)
 font = ExtResource("6_hy5n8")
 font_size = 24
 font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="InputEventKey" id="InputEventKey_1yngc"]
+device = -1
+pressed = true
+keycode = 4194308
+echo = true
+
+[sub_resource type="InputEventKey" id="InputEventKey_drl6p"]
+device = -1
+pressed = true
+keycode = 4194312
+echo = true
+
+[sub_resource type="Shortcut" id="Shortcut_hy5n8"]
+events = [SubResource("InputEventKey_1yngc"), SubResource("InputEventKey_drl6p")]
+
+[sub_resource type="InputEventKey" id="InputEventKey_hy5n8"]
+device = -1
+pressed = true
+keycode = 4194309
+
+[sub_resource type="InputEventKey" id="InputEventKey_l2n0x"]
+keycode = 4194310
+
+[sub_resource type="Shortcut" id="Shortcut_hl3es"]
+events = [SubResource("InputEventKey_hy5n8"), SubResource("InputEventKey_l2n0x")]
 
 [sub_resource type="LabelSettings" id="LabelSettings_6jib3"]
 font = ExtResource("6_hy5n8")
@@ -45,6 +79,7 @@ script = ExtResource("1_1yngc")
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 size_flags_horizontal = 8
+shortcut = SubResource("Shortcut_l2n0x")
 texture_normal = ExtResource("1_crq44")
 texture_pressed = ExtResource("2_1hbf5")
 texture_hover = ExtResource("2_1hbf5")
@@ -155,12 +190,14 @@ theme_override_styles/disabled = ExtResource("8_lowah")
 theme_override_styles/hover = ExtResource("9_1yngc")
 theme_override_styles/pressed = ExtResource("9_1yngc")
 theme_override_styles/normal = ExtResource("8_lowah")
+shortcut = SubResource("Shortcut_hy5n8")
 
 [node name="Confirm" parent="Background" instance=ExtResource("7_hl3es")]
 layout_mode = 1
 offset_top = 160.5
 offset_right = 106.0
 offset_bottom = 232.5
+shortcut = SubResource("Shortcut_hl3es")
 
 [node name="Text" parent="Background/Confirm" index="0"]
 text = "Conferma"

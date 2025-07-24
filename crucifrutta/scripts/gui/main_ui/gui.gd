@@ -40,7 +40,6 @@ func crossword_setup(crossword: Crossword) -> void:
 	crossword_gui.connect("spawn_keyboard", _on_spawn_keyboard)
 
 func _on_spawn_keyboard() -> void:
-	print("AAAAAAAA : ")
 	Utils.recursive_disable_buttons(self, true)
 	Utils.recursive_disable_buttons($Keyboard, false)
 	$Keyboard.visible = true
@@ -55,7 +54,6 @@ func _close_keyboard() -> void:
 	$Keyboard.reset()
 	Utils.recursive_disable_buttons(self, false)
 
-
 func _on_close_button_pressed() -> void:
 	_close_keyboard()
 
@@ -63,7 +61,6 @@ func _on_confirm_pressed() -> void:
 	var text : String = $Keyboard/Background/Display/Label.get_text()
 	$Crossword.change_row_text(text)
 	
-	if GameLogic.answer_given(text, $Crossword.get("_selected_row_index")):
-		print("BANANA")
-	else:
+	await _close_keyboard()
+	if not GameLogic.answer_given(text, $Crossword.get("_selected_row_index")):
 		$Crossword.clear_row_text()

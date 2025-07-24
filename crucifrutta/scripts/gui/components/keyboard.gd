@@ -67,15 +67,15 @@ func _process(delta):
 		global_position = mouse_pos
 
 func _unhandled_input(event):
-	if event is InputEventKey and event.pressed and not event.echo:
+	if event is InputEventKey and event.pressed:
 		var key_string = OS.get_keycode_string(event.keycode)
-		if key_string.begins_with("Kp"):
-			key_string = key_string.substr(3, 1)
-		if key_string.is_valid_int():
-			var index = key_string.to_int()
-			var button_name = "Button" + str(index)
-			var button_node = $Background/Keyboard.get_node(button_name)
-			button_node.pressed.emit()
-			button_node.set_pressed_no_signal(true)
-			await get_tree().create_timer(0.2).timeout
-			button_node.set_pressed_no_signal(false)
+		if key_string.length() == 1:
+			if key_string >= "a" and key_string <= "z" or key_string >= "A" and key_string <= "Z":
+				var button_name = "Button" + key_string
+				var button_node = $Background/Keyboard.find_child(button_name, true, false)
+				button_node.pressed.emit()
+				button_node.toggle_mode = true
+				button_node.set_pressed_no_signal(true)
+				await get_tree().create_timer(0.2).timeout
+				button_node.set_pressed_no_signal(false)
+				button_node.toggle_mode = false

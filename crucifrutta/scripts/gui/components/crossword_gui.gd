@@ -75,4 +75,5 @@ func change_row_text(text) -> void:
 func clear_row_text() -> void:
 	for box in _get_selected_row_boxes():
 		if box is CharBox:
+			await get_tree().process_frame
 			box.get_node("Char").set_text("")
