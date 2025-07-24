@@ -50,8 +50,8 @@ func _create_rounds():
 		crossword_gui.set("size.x", 36 * length)
 		crossword_gui.set("size.y", 36 * length)
 		
-		
 		gui.add_child(crossword_gui)
+		
 		
 		#$Gui/Blackboard.setup(system_equation)
 

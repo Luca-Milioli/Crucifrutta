@@ -10,11 +10,12 @@ func _on_tree_entered() -> void:
 	Utils.recursive_disable_buttons($TutorialPopup, false)
 
 func _on_tutorial_popup_game_start() -> void:
+	Utils.recursive_disable_buttons(self,false)
+	$TutorialPopup/SplitContainer/Go.disabled = true
 	await super.fade_out($TutorialPopup)
 	$TutorialPopup.queue_free()
-	Utils.recursive_disable_buttons(self,false)
-	#$Blackboard.visible = true
-	#$Blackboard.first_animation()
+	$Crossword.visible = true
+	$Crossword/Timer.start()
 	$TopBar.text_first_entrance()
 
 func kill():
