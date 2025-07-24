@@ -40,10 +40,14 @@ func crossword_setup(crossword: Crossword) -> void:
 	crossword_gui.connect("spawn_keyboard", _on_spawn_keyboard)
 
 func _on_spawn_keyboard() -> void:
+	var row_index = $Crossword.get("_selected_row_index")
+	var answer_length = GameLogic.get_answer(row_index).length()
+	$Keyboard.set("_max_length", answer_length)
+	
 	Utils.recursive_disable_buttons(self, true)
 	Utils.recursive_disable_buttons($Keyboard, false)
 	$Keyboard.visible = true
-	$Keyboard.set_definition(GameLogic.get_item_definition($Crossword.get("_selected_row_index")))
+	$Keyboard.set_definition(GameLogic.get_item_definition(row_index), answer_length)
 	super.fade_in($Keyboard, 1.0, 0.8)
 
 func crossword_finished() -> void:

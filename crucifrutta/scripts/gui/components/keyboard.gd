@@ -2,6 +2,7 @@ extends VBoxContainer
 
 var is_dragging: bool = false
 var drag_offset: Vector2
+var _max_length: int
 
 func _ready() -> void:
 	_create_buttons()
@@ -12,8 +13,8 @@ func reset():
 	$Background/Display/Label.set_text("")
 	self.visible = false
 
-func set_definition(text : String):
-	$Definition/Label.set_text(text)
+func set_definition(text : String, length: int):
+	$Definition/Label.set_text(text + " [" + str(length) + "]")
 	
 func _create_button(letter: String) -> Button:
 	var button = preload("res://scenes/components/buttons/square_button.tscn").instantiate()
@@ -40,7 +41,8 @@ func _new_text(button_pressed) -> String:
 		return text
 	
 	if button_pressed != $Background/Confirm:
-		text += button_pressed.get_node("Text").get_text()
+		if text.length() < _max_length:
+			text += button_pressed.get_node("Text").get_text()
 	
 	return text
 
@@ -66,6 +68,14 @@ func _process(delta):
 
 		global_position = mouse_pos
 
+func _press_button(button: Button) -> void:
+	button.pressed.emit()
+	button.toggle_mode = true
+	button.set_pressed_no_signal(true)
+	await get_tree().create_timer(0.2).timeout
+	button.set_pressed_no_signal(false)
+	button.toggle_mode = false
+
 func _unhandled_input(event):
 	if event is InputEventKey and event.pressed:
 		var key_string = OS.get_keycode_string(event.keycode)
@@ -73,9 +83,6 @@ func _unhandled_input(event):
 			if key_string >= "a" and key_string <= "z" or key_string >= "A" and key_string <= "Z":
 				var button_name = "Button" + key_string
 				var button_node = $Background/Keyboard.find_child(button_name, true, false)
-				button_node.pressed.emit()
-				button_node.toggle_mode = true
-				button_node.set_pressed_no_signal(true)
-				await get_tree().create_timer(0.2).timeout
-				button_node.set_pressed_no_signal(false)
-				button_node.toggle_mode = false
+				_press_button(button_node)
+		elif key_string == "Backspace":
+			_press_button($Background/Keyboard/ThirdRow/Backspace)

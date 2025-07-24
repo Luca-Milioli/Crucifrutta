@@ -57,8 +57,9 @@ func _on_timer_timeout() -> void:
 	$Timer.start()
 
 func _on_charbox_clicked(row_index : int):
-	self.spawn_keyboard.emit()
 	self._selected_row_index = row_index
+	
+	self.spawn_keyboard.emit()
 
 func change_row_text(text) -> void:
 	var selected_row_boxes = _get_selected_row_boxes()
@@ -68,7 +69,7 @@ func change_row_text(text) -> void:
 		i+=1
 	
 	var j = 0
-	while selected_row_boxes[i + j] is CharBox and j < text.length():
+	while j < text.length() and selected_row_boxes[i + j] is CharBox:
 		(selected_row_boxes[i + j] as Node).get_node("Char").set_text(text[j])
 		j += 1
 

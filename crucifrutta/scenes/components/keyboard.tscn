@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://dw0mpg87f3big"]
+[gd_scene load_steps=19 format=3 uid="uid://dw0mpg87f3big"]
 
 [ext_resource type="Script" uid="uid://bw7xbc77xqslh" path="res://scripts/gui/components/keyboard.gd" id="1_1yngc"]
 [ext_resource type="Texture2D" uid="uid://drkk1282juv30" path="res://art/graphics/buttons/CloseButton.png" id="1_crq44"]
@@ -28,21 +28,6 @@ font_color = Color(0, 0, 0, 1)
 font = ExtResource("6_hy5n8")
 font_size = 24
 font_color = Color(0, 0, 0, 1)
-
-[sub_resource type="InputEventKey" id="InputEventKey_1yngc"]
-device = -1
-pressed = true
-keycode = 4194308
-echo = true
-
-[sub_resource type="InputEventKey" id="InputEventKey_drl6p"]
-device = -1
-pressed = true
-keycode = 4194312
-echo = true
-
-[sub_resource type="Shortcut" id="Shortcut_hy5n8"]
-events = [SubResource("InputEventKey_1yngc"), SubResource("InputEventKey_drl6p")]
 
 [sub_resource type="InputEventKey" id="InputEventKey_hy5n8"]
 device = -1
@@ -190,7 +175,6 @@ theme_override_styles/disabled = ExtResource("8_lowah")
 theme_override_styles/hover = ExtResource("9_1yngc")
 theme_override_styles/pressed = ExtResource("9_1yngc")
 theme_override_styles/normal = ExtResource("8_lowah")
-shortcut = SubResource("Shortcut_hy5n8")
 
 [node name="Confirm" parent="Background" instance=ExtResource("7_hl3es")]
 layout_mode = 1

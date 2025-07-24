@@ -1,7 +1,8 @@
 extends Node
 class_name DataManager
 
-const DATA_PATH = "res://data/data_crossword.csv"
+#const DATA_PATH = "res://data/data_crossword.csv"
+const DATA_PATH = "res://data/test.csv"
 var data: Array
 
 func read_csv(separator: String = ",") -> Array:

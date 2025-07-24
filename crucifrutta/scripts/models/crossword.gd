@@ -57,6 +57,13 @@ func get_length() -> int:
 func get_height() -> int:
 	return self._crossword_items.size()
 
+func get_n_words() -> int:
+	var n_words = 0
+	for item in _crossword_items:
+		if item.get_length() > 0:
+			n_words += 1
+	return n_words
+
 func column_highlighted() -> int:
 	return left_length()
 
