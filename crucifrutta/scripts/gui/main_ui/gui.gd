@@ -18,18 +18,37 @@ func _on_tutorial_popup_game_start() -> void:
 	$Crossword/Timer.start()
 	$TopBar.text_first_entrance()
 
-func kill():
+func kill() -> void:
 	await super.fade_out(self, 0.4)
+
+func crossword_setup(crossword: Crossword, crossword_gui: GridContainer) -> void:
+	const size_box = Vector2(36, 36)
+	var separation = Vector2(crossword_gui.get_theme_constant("h_separation"), crossword_gui.get_theme_constant("v_separation"))
+	var length = crossword.get_length()
+	var height = crossword.get_height()
 	
-func _close_keyboard():
+	crossword_gui.set("columns", length)
+	crossword_gui.setup(crossword.to_matrix(), crossword.column_highlighted())
+	
+	add_child(crossword_gui)
+	
+	crossword_gui.set("size", Vector2((size_box.x + separation.x) * length, (size_box.y + separation.y) * height))
+	crossword_gui.set("position", Vector2(121.5, 135 + size_box.y))
+	
+	crossword_gui.connect("spawn_keyboard", spawn_keyboard)
+
+func spawn_keyboard() -> void:
+	$Keyboard.visible = true
+	super.fade_in($Keyboard, 1.0, 0.8)
+
+func crossword_finished() -> void:
+	super.fade_out($Crossword)
+
+func _close_keyboard() -> void:
 	await super.fade_out($Keyboard)
 	$Keyboard.reset()
 	Utils.recursive_disable_buttons(self, false)
 
-func _on_confirm_pressed() -> void:
-	if $Keyboard/Display/Label.get_text().is_valid_int():
-		$AnswerButton/Text.set_text("Invia risposta")
-	_close_keyboard()
 
 func _on_close_button_pressed() -> void:
 	_close_keyboard()

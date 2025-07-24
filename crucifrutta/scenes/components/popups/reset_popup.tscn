@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://mgklm4qm7xq8" path="res://scenes/components/popups/tutorial.tscn" id="1_wdb7a"]
 [ext_resource type="PackedScene" uid="uid://cixb2slrwfeax" path="res://scenes/components/buttons/custom_button.tscn" id="2_rb0lb"]
-[ext_resource type="FontFile" uid="uid://c3ii6qbpg4ulc" path="res://art/font/Roc_Grotesk_Bold.ttf" id="3_vgje1"]
+[ext_resource type="FontFile" uid="uid://o7lywgnhixr4" path="res://art/font/Roc_Grotesk_Bold.ttf" id="3_vgje1"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_tvmof"]
 font = ExtResource("3_vgje1")

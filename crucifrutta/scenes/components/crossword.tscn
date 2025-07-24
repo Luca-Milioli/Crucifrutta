@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bsnba58hctvj6"]
 
-[ext_resource type="Script" uid="uid://dndwg6a7bk8ss" path="res://scripts/gui/components/crossword_gui.gd" id="1_ci73n"]
+[ext_resource type="Script" uid="uid://bh6g7lurfqfsw" path="res://scripts/gui/components/crossword_gui.gd" id="1_ci73n"]
 
 [node name="Crossword" type="GridContainer"]
 anchors_preset = 8
@@ -14,6 +14,8 @@ offset_right = -2.0
 offset_bottom = 25.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/h_separation = 4
+theme_override_constants/v_separation = 4
 script = ExtResource("1_ci73n")
 
 [node name="Timer" type="Timer" parent="."]

@@ -1,7 +1,5 @@
 extends CommonUI
 
-@export var type: int
-
 signal play_pressed
 signal back_pressed
 

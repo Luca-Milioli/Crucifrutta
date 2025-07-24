@@ -58,24 +58,31 @@ func get_height() -> int:
 	return self._crossword_items.size()
 
 func column_highlighted() -> int:
-	return left_length() + 1
+	return left_length()
+
+func empty_row(length: int) -> Array:
+	var row: Array
+	for i in range(length):
+		row.append(null if i == column_highlighted() else "")
+	return row
 
 func to_matrix() -> Array[Array]:
 	var matrix: Array[Array]
 	var left_length = left_length()
 	var right_length = right_length()
+	var total_length = left_length + right_length + 1
 	
 	for i in range(get_height()):
 		var row: Array
 		var word_length = _crossword_items[i].get_length()
 		if word_length <= 0:
-			matrix.append(null)
+			matrix.append(empty_row(total_length))
 		else:
 			var tmp_shift = _crossword_items[i].calculate_shift()
 			var intersection = tmp_shift.x if tmp_shift.x != 0 else tmp_shift.y
 			var k = 0
 			var added = false	# if the word is already added
-			while k < left_length + right_length + 1 :
+			while k < total_length:
 				if k < left_length - intersection or added:		# add empty string at the beginning and after the word is added
 					row.append("")
 					k += 1

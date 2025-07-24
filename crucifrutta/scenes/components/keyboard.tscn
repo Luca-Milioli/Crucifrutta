@@ -1,0 +1,155 @@
+[gd_scene load_steps=14 format=3 uid="uid://dw0mpg87f3big"]
+
+[ext_resource type="Script" uid="uid://bw7xbc77xqslh" path="res://scripts/gui/components/keyboard.gd" id="1_1yngc"]
+[ext_resource type="Texture2D" uid="uid://drkk1282juv30" path="res://art/graphics/buttons/CloseButton.png" id="1_crq44"]
+[ext_resource type="Texture2D" uid="uid://b3gfi7h5kagc" path="res://art/graphics/buttons/CloseHover.png" id="2_1hbf5"]
+[ext_resource type="Texture2D" uid="uid://ddmktaytpr4m6" path="res://art/graphics/Confirm.png" id="3_lowah"]
+[ext_resource type="FontFile" uid="uid://hbsghem7xpj3" path="res://art/font/Roc_Grotesk_Medium.ttf" id="4_1yngc"]
+[ext_resource type="Texture2D" uid="uid://djn5k8l6sodab" path="res://art/graphics/slots/Display.png" id="5_drl6p"]
+[ext_resource type="FontFile" uid="uid://o7lywgnhixr4" path="res://art/font/Roc_Grotesk_Bold.ttf" id="6_hy5n8"]
+[ext_resource type="PackedScene" uid="uid://cixb2slrwfeax" path="res://scenes/components/buttons/custom_button.tscn" id="7_hl3es"]
+[ext_resource type="Texture2D" uid="uid://dgwts6u7b4kax" path="res://art/graphics/buttons/Backspace.png" id="7_lowah"]
+[ext_resource type="Texture2D" uid="uid://c7b6buwymwpv3" path="res://art/graphics/buttons/BackspaceHover.png" id="8_1yngc"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_l2n0x"]
+font = ExtResource("4_1yngc")
+font_size = 24
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_m34w1"]
+font = ExtResource("6_hy5n8")
+font_size = 24
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_6jib3"]
+font = ExtResource("6_hy5n8")
+font_size = 24
+font_color = Color(0.0588235, 0.47451, 0.529412, 1)
+
+[node name="Keyboard" type="VBoxContainer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -408.0
+offset_top = -392.0
+offset_right = 408.0
+offset_bottom = 339.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 16
+script = ExtResource("1_1yngc")
+
+[node name="CloseButton" type="TextureButton" parent="."]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 8
+texture_normal = ExtResource("1_crq44")
+texture_pressed = ExtResource("2_1hbf5")
+texture_hover = ExtResource("2_1hbf5")
+texture_disabled = ExtResource("1_crq44")
+ignore_texture_size = true
+
+[node name="Definition" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(816, 132)
+layout_mode = 2
+texture = ExtResource("3_lowah")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="Definition"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -360.0
+offset_top = -18.0
+offset_right = 360.0
+offset_bottom = 18.0
+grow_horizontal = 2
+grow_vertical = 2
+label_settings = SubResource("LabelSettings_l2n0x")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VSeparator" type="VSeparator" parent="."]
+layout_mode = 2
+
+[node name="Background" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(816, 487)
+layout_mode = 2
+texture = ExtResource("3_lowah")
+expand_mode = 1
+
+[node name="Display" type="TextureRect" parent="Background"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -365.5
+offset_top = 32.0
+offset_right = 365.5
+offset_bottom = 112.0
+grow_horizontal = 2
+texture = ExtResource("5_drl6p")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="Background/Display"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -43.0
+offset_top = -17.5
+offset_right = 43.0
+offset_bottom = 17.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "AAA"
+label_settings = SubResource("LabelSettings_m34w1")
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="Keyboard" type="GridContainer" parent="Background"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -365.0
+offset_top = -91.5
+offset_right = 365.0
+offset_bottom = 120.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/h_separation = 10
+theme_override_constants/v_separation = 10
+columns = 10
+
+[node name="Backspace" type="TextureButton" parent="Background/Keyboard"]
+custom_minimum_size = Vector2(100, 64)
+layout_mode = 2
+texture_normal = ExtResource("7_lowah")
+texture_pressed = ExtResource("8_1yngc")
+texture_hover = ExtResource("8_1yngc")
+texture_disabled = ExtResource("7_lowah")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Confirm" parent="Background" instance=ExtResource("7_hl3es")]
+layout_mode = 1
+offset_top = 160.5
+offset_right = 106.0
+offset_bottom = 232.5
+
+[node name="Text" parent="Background/Confirm" index="0"]
+text = "Conferma"
+label_settings = SubResource("LabelSettings_6jib3")
+
+[editable path="Background/Confirm"]

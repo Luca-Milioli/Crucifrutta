@@ -1,12 +1,10 @@
 extends GridContainer
 
+signal spawn_keyboard
+
 var _child_list : Array = []
 var _selected_row : Array = []
 
-func _ready() -> void:
-	pass
-# "", "", c, i, a, o, ", ""
-# "", b , a, n, a, n, a, ""
 func setup(charMatrix : Array[Array], highlighted_column : int):
 	var charbox_to_instantiate = preload("res://scenes/components/char_box.tscn")
 	var emptybox_to_instantiate = preload("res://scenes/components/empy_cell.tscn")
@@ -15,6 +13,7 @@ func setup(charMatrix : Array[Array], highlighted_column : int):
 	var orange_texture_hover = preload("res://art/graphics/slots/OrangeHoverSlot.png")
 	
 	for row in charMatrix:
+		var i = 0
 		for char in row:
 			var box : Node
 			match char:
@@ -24,17 +23,15 @@ func setup(charMatrix : Array[Array], highlighted_column : int):
 					box = graybox_to_instantiate.instantiate()
 				_:
 					box = charbox_to_instantiate.instantiate()
-					#box.get_node("Char").text = char
+					if i == highlighted_column:
+						box.set("texture_normal", orange_texture)
+						box.set("texture_disabled", orange_texture)
+						box.set("texture_hover", orange_texture_hover)
+						box.set("texture_pressed", orange_texture_hover)
 					box.connect("pressed", _on_charbox_clicked.bind(row))
 			
 			self._child_list.append(box)
-		
-		var child_to_highlight = self._child_list.get(charMatrix.find(row) * get("columns") + highlighted_column - 1)
-		child_to_highlight.set("texture_normal", orange_texture)
-		child_to_highlight.set("texture_disabled", orange_texture)
-		child_to_highlight.set("texture_hover", orange_texture_hover)
-		child_to_highlight.set("texture_pressed", orange_texture_hover)
-	
+			i += 1
 
 func _on_timer_timeout() -> void:
 	add_child(self._child_list.pop_front())
@@ -49,11 +46,8 @@ func _on_timer_timeout() -> void:
 	$Timer.start()
 
 func _on_charbox_clicked(row):
+	self.spawn_keyboard.emit()
 	self._selected_row = row
-	print(self._selected_row)
-	#preload("res://scenes/compnents/keyboard.tscn")
-	#add_child(keyboard)
-	#$"../Keyboard/Display/Label".get_text()
 
 func _on_confirm_pressed() -> void:
 	var text : String = $"../Keyboard/Display/Label".get_text()

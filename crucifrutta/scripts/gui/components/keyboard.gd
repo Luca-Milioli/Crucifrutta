@@ -5,11 +5,11 @@ var drag_offset: Vector2
 
 func _ready() -> void:
 	_connect_buttons(self)
-	$Backspace.toggle_mode = false
+	$Background/Keyboard/Backspace.toggle_mode = false
 	$CloseButton.toggle_mode = false
 
 func reset():
-	$Display/Label.set_text("Insert result...")
+	pass#$Background/Display/Label.set_text("Insert result...")
 	
 func _connect_buttons(node):
 	for child in node.get_children():
@@ -20,20 +20,19 @@ func _connect_buttons(node):
 			_connect_buttons(child)
 
 func _new_text(button_pressed) -> String:
+	var text = $Background/Display/Label.get_text() as String
 	
-	var text = $Display/Label.get_text()
-	
-	if button_pressed == $Backspace:
-		text = text.substr(0, -2)
+	if button_pressed == $Background/Keyboard/Backspace:
+		text = text.substr(0, text.length() - 1)
 		return text
 	
-	if button_pressed != $Confirm:
+	if button_pressed != $Background/Confirm:
 		text += button_pressed.get_node("Text").get_text()
 	
 	return text
 
 func _on_button_pressed(button):
-	$Display/Label.set_text(_new_text(button))
+	$Background/Display/Label.set_text(_new_text(button))
 
 func _gui_input(event):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
@@ -62,7 +61,7 @@ func _unhandled_input(event):
 		if key_string.is_valid_int():
 			var index = key_string.to_int()
 			var button_name = "Button" + str(index)
-			var button_node = $ButtonsContainer.get_node(button_name)
+			var button_node = $Background/Keyboard.get_node(button_name)
 			button_node.pressed.emit()
 			button_node.set_pressed_no_signal(true)
 			await get_tree().create_timer(0.2).timeout

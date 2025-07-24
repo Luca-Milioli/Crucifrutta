@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://b8srycxdomt88"]
+[gd_scene load_steps=7 format=3 uid="uid://b8srycxdomt88"]
 
 [ext_resource type="PackedScene" uid="uid://bieiqc1mo6u2r" path="res://scenes/components/top_bar.tscn" id="1_53q0q"]
 [ext_resource type="Script" uid="uid://c4eqkfow0fdll" path="res://scripts/gui/main_ui/gui.gd" id="1_fvce3"]
 [ext_resource type="PackedScene" uid="uid://mgklm4qm7xq8" path="res://scenes/components/popups/tutorial.tscn" id="2_8h14w"]
 [ext_resource type="Texture2D" uid="uid://dj1j6xry0fiqv" path="res://art/graphics/backgrounds/GuiBackground.jpg" id="2_k8xsf"]
 [ext_resource type="PackedScene" uid="uid://b58mhp2m3rr8y" path="res://scenes/components/popups/reset_popup.tscn" id="3_k8xsf"]
+[ext_resource type="PackedScene" uid="uid://dw0mpg87f3big" path="res://scenes/components/keyboard.tscn" id="6_ocqor"]
 
 [node name="Gui" type="Control"]
 modulate = Color(1, 1, 1, 0)
@@ -48,6 +49,18 @@ offset_left = 118.0
 offset_top = 37.0
 offset_right = 906.0
 offset_bottom = 101.0
+
+[node name="Keyboard" parent="." instance=ExtResource("6_ocqor")]
+visible = false
+modulate = Color(1, 1, 1, 0)
+top_level = true
+layout_mode = 1
+anchors_preset = 7
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -734.0
+offset_bottom = 0.0
+grow_vertical = 0
 
 [connection signal="tree_entered" from="." to="." method="_on_tree_entered"]
 [connection signal="game_start" from="TutorialPopup" to="." method="_on_tutorial_popup_game_start"]
