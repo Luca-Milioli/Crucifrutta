@@ -1,7 +1,7 @@
 extends VBoxContainer
 
-var is_dragging: bool = false
-var drag_offset: Vector2
+var _is_dragging: bool = false
+var _drag_offset: Vector2
 var _max_length: int
 
 func _ready() -> void:
@@ -52,14 +52,14 @@ func _on_button_pressed(button):
 func _gui_input(event):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		if event.pressed:
-			is_dragging = true
-			drag_offset = get_global_mouse_position() - global_position
+			_is_dragging = true
+			_drag_offset = get_global_mouse_position() - global_position
 		else:
-			is_dragging = false
+			_is_dragging = false
 
 func _process(delta):
-	if is_dragging:
-		var mouse_pos = get_viewport().get_mouse_position() - drag_offset
+	if _is_dragging:
+		var mouse_pos = get_viewport().get_mouse_position() - _drag_offset
 		var screen_size = get_viewport_rect().size
 		
 		# Clamp la posizione per restare dentro lo schermo

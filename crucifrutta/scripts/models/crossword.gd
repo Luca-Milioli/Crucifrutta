@@ -26,7 +26,7 @@ func _to_string() -> String:
 	
 	return text
 
-func left_length() -> int:	# from the beginning to column highligthed
+func left_length() -> int: # from the beginning to column highligthed
 	var left_length = 0
 	
 	for word in self._crossword_items:
@@ -38,7 +38,7 @@ func left_length() -> int:	# from the beginning to column highligthed
 	
 	return left_length
 
-func right_length() -> int:	# from the column highlighted to the end
+func right_length() -> int: # from column highlighted to the end
 	var right_length = 0
 	
 	for word in self._crossword_items:
@@ -90,12 +90,12 @@ func to_matrix() -> Array[Array]:
 			var k = 0
 			var added = false	# if the word is already added
 			while k < total_length:
-				if k < left_length - intersection or added:		# add empty string at the beginning and after the word is added
+				if k < left_length - intersection or added: # add empty string at the beginning and after the word is added
 					row.append("")
 					k += 1
 				else:
 					var j = 0
-					while j < word_length:	# add the word and set the flag
+					while j < word_length: # add the word and set the flag
 						row.append(_crossword_items[i].get("_answer")[j])
 						j += 1
 					k += word_length

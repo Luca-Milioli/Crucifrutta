@@ -11,9 +11,9 @@ func _get_selected_row_boxes() -> Array:
 	return get_children().slice(start_index, end_index)
 	
 func setup(charMatrix : Array[Array], highlighted_column : int):
-	var charbox_to_instantiate = preload("res://scenes/components/char_box.tscn")
-	var emptybox_to_instantiate = preload("res://scenes/components/empy_cell.tscn")
-	var graybox_to_instantiate = preload("res://scenes/components/gray_char_box.tscn")
+	var charbox_to_instantiate = preload("res://scenes/components/boxes/char_box.tscn")
+	var emptybox_to_instantiate = preload("res://scenes/components/boxes/empy_cell.tscn")
+	var graybox_to_instantiate = preload("res://scenes/components/boxes/gray_char_box.tscn")
 	var orange_texture = preload("res://art/graphics/slots/OrangeSlot.png")
 	var orange_texture_hover = preload("res://art/graphics/slots/OrangeHoverSlot.png")
 	

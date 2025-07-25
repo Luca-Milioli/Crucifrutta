@@ -1,4 +1,4 @@
-extends Node	# needed for autoload (singleton)
+extends Node
 
 signal crossword_finished
 signal finished
