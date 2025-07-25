@@ -1,11 +1,17 @@
-[gd_scene load_steps=2 format=3 uid="uid://cxxovjao267fq"]
+[gd_scene load_steps=3 format=3 uid="uid://cxxovjao267fq"]
 
-[ext_resource type="Texture2D" uid="uid://cb4ro5bpxkn4k" path="res://art/graphics/slots/GraySlot.png" id="1_qaqxf"]
+[ext_resource type="Texture2D" uid="uid://djtwqwm60verh" path="res://art/graphics/slots/GraySlot.png" id="1_qaqxf"]
+[ext_resource type="Script" uid="uid://d23wgcumca2qh" path="res://scripts/gui/components/char_box_animation.gd" id="2_dovx7"]
 
 [node name="GrayCharBox" type="TextureButton"]
 custom_minimum_size = Vector2(36, 36)
 offset_right = 36.0
 offset_bottom = 36.0
+disabled = true
 texture_normal = ExtResource("1_qaqxf")
+texture_disabled = ExtResource("1_qaqxf")
 ignore_texture_size = true
 stretch_mode = 0
+script = ExtResource("2_dovx7")
+
+[connection signal="tree_entered" from="." to="." method="_on_tree_entered"]

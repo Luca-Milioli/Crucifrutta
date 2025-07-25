@@ -1,8 +1,8 @@
 extends Node
 class_name DataManager
 
-#const DATA_PATH = "res://data/data_crossword.csv"
-const DATA_PATH = "res://data/test.csv"
+const DATA_PATH = "res://data/data_crossword.csv"
+#const DATA_PATH = "res://data/test.csv"
 var data: Array
 
 func read_csv(separator: String = ",") -> Array:
@@ -23,7 +23,7 @@ func read_csv(separator: String = ",") -> Array:
 		else:
 			file.seek(pos)	# bring back cursor
 			
-			var attributes = file.get_csv_line(separator)
+			var attributes = file.get_line().strip_edges().split(separator)
 			
 			# attributes[0] = "cruciverbaN"
 			var row_data : Dictionary = {

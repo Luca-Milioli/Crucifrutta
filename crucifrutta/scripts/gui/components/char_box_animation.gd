@@ -7,4 +7,4 @@ func _ready():
 	
 func _on_tree_entered() -> void:
 	var tween = create_tween()
-	tween.tween_property(self, "modulate:a", 1.0, 0.14)
+	tween.tween_property(self, "modulate:a", 1.0, 0.3)

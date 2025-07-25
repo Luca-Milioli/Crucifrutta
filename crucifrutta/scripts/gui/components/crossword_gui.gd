@@ -39,22 +39,22 @@ func setup(charMatrix : Array[Array], highlighted_column : int):
 						box.set("texture_pressed", orange_texture_hover)
 						
 					box.connect("pressed", _on_charbox_clicked.bind(charMatrix.find(row)))
-			
 			self._child_list.append(box)
 			i += 1
 		j += 1
 
 func _on_timer_timeout() -> void:
-	add_child(self._child_list.pop_front())
+	var front = self._child_list.pop_front()
+	add_child(front)
 	
 	$Timer.stop()
 	
-	var front = get_child(-1)
-	while front is not CharBox and self._child_list.size() > 0:
+	while front is not CharBox and not self._child_list.is_empty():
 		add_child(self._child_list.pop_front())
 		front = self._child_list.front()
-		
-	$Timer.start()
+	
+	if not self._child_list.is_empty():
+		$Timer.start()
 
 func _on_charbox_clicked(row_index : int):
 	self._selected_row_index = row_index
