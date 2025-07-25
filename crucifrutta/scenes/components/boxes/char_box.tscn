@@ -1,14 +1,15 @@
 [gd_scene load_steps=5 format=3 uid="uid://b8u7k0udc04la"]
 
-[ext_resource type="Texture2D" uid="uid://dyurk0yjs0k0l" path="res://art/graphics/slots/SlotHover.png" id="2_hnhp4"]
-[ext_resource type="Texture2D" uid="uid://djn5k8l6sodab" path="res://art/graphics/slots/Display.png" id="3_ho55f"]
-[ext_resource type="Script" uid="uid://d23wgcumca2qh" path="res://scripts/gui/components/char_box_animation.gd" id="4_nvoxc"]
+[ext_resource type="Texture2D" uid="uid://c3skt1k8no8jm" path="res://art/graphics/slots/SlotHover.png" id="2_hnhp4"]
+[ext_resource type="Texture2D" uid="uid://b6668wive2076" path="res://art/graphics/slots/Display.png" id="3_ho55f"]
+[ext_resource type="Script" uid="uid://dflj4nnt2yo73" path="res://scripts/gui/components/char_box_animation.gd" id="4_nvoxc"]
 [ext_resource type="LabelSettings" uid="uid://dbdr0y0y4dqxw" path="res://art/styleboxes/label_settings_28.tres" id="4_t0lj3"]
 
 [node name="CharBox" type="TextureButton"]
 custom_minimum_size = Vector2(36, 36)
 offset_right = 36.0
 offset_bottom = 36.0
+focus_mode = 0
 texture_normal = ExtResource("3_ho55f")
 texture_pressed = ExtResource("2_hnhp4")
 texture_hover = ExtResource("2_hnhp4")

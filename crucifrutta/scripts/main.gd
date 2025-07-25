@@ -24,6 +24,8 @@ func _on_menu_play_pressed() -> void:
 
 func _on_reset():
 	GameLogic.reset()
+	CrosswordFactory.reset()
+	AudioManager.reset()
 	get_tree().reload_current_scene()
 
 func _create_rounds():

@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cxxovjao267fq"]
 
-[ext_resource type="Texture2D" uid="uid://djtwqwm60verh" path="res://art/graphics/slots/GraySlot.png" id="1_qaqxf"]
-[ext_resource type="Script" uid="uid://d23wgcumca2qh" path="res://scripts/gui/components/char_box_animation.gd" id="2_dovx7"]
+[ext_resource type="Texture2D" uid="uid://cb4ro5bpxkn4k" path="res://art/graphics/slots/GraySlot.png" id="1_qaqxf"]
+[ext_resource type="Script" uid="uid://dflj4nnt2yo73" path="res://scripts/gui/components/char_box_animation.gd" id="2_dovx7"]
 
 [node name="GrayCharBox" type="TextureButton"]
 custom_minimum_size = Vector2(36, 36)

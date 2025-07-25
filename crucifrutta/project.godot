@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 CrosswordFactory="*res://scripts/globals/crossword_factory.gd"
 GameLogic="*res://scripts/globals/game_logic.gd"
+AudioManager="*res://scenes/audio_manager.tscn"
 
 [display]
 

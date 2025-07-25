@@ -5,6 +5,9 @@ const DATA_PATH = "res://data/data_crossword.csv"
 #const DATA_PATH = "res://data/test.csv"
 var data: Array
 
+func reset():
+	self.data = []
+	
 func read_csv(separator: String = ",") -> Array:
 	if not data.is_empty():
 		return data

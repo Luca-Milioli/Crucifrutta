@@ -9,11 +9,6 @@ func _on_top_bar_retry_pressed() -> void:
 	await fade_in($ResetPopup)
 	Utils.recursive_disable_buttons($ResetPopup, false)
 
-func _on_top_bar_audio_pressed() -> void:
-	for i in AudioServer.get_bus_count():
-		var is_muted = AudioServer.is_bus_mute(i)
-		AudioServer.set_bus_mute(i, not is_muted)
-
 func _on_reset_popup_cancel() -> void:
 	Utils.recursive_disable_buttons($ResetPopup, true)
 	await fade_out($ResetPopup)

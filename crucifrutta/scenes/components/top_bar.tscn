@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://bieiqc1mo6u2r"]
 
-[ext_resource type="Script" uid="uid://fn6pmt8uwdiq" path="res://scripts/gui/components/top_bar.gd" id="1_bywe0"]
+[ext_resource type="Script" uid="uid://be2keyl1smrp0" path="res://scripts/gui/components/top_bar.gd" id="1_bywe0"]
 [ext_resource type="Texture2D" uid="uid://b5ehp41i3c0yk" path="res://art/graphics/buttons/AudioButton.png" id="1_syrjg"]
 [ext_resource type="Texture2D" uid="uid://cpqsxu6a3lceo" path="res://art/graphics/buttons/HoveredAudioButton.png" id="2_ch1ap"]
 [ext_resource type="Texture2D" uid="uid://doviwsw03yead" path="res://art/graphics/buttons/AudioEnabled.png" id="3_nts21"]
@@ -51,7 +51,7 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 label_settings = SubResource("LabelSettings_nts21")
 horizontal_alignment = 1
-vertical_alignment = 1
+vertical_alignment = 2
 autowrap_mode = 2
 
 [node name="RetryButton" type="TextureButton" parent="."]

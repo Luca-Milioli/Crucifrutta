@@ -67,4 +67,8 @@ func _on_confirm_pressed() -> void:
 	
 	await _close_keyboard()
 	if not GameLogic.answer_given(text, $Crossword.get("_selected_row_index")):
+		AudioManager.wrong()
 		$Crossword.clear_row_text()
+	else:
+		AudioManager.correct()
+		$Crossword.disable_row()

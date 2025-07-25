@@ -73,6 +73,12 @@ func change_row_text(text) -> void:
 		(selected_row_boxes[i + j] as Node).get_node("Char").set_text(text[j])
 		j += 1
 
+func disable_row():
+	var selected_row_boxes = _get_selected_row_boxes()
+	for box in selected_row_boxes:
+		if box is CharBox:
+			box.mouse_filter = Control.MOUSE_FILTER_IGNORE
+
 func clear_row_text() -> void:
 	for box in _get_selected_row_boxes():
 		if box is CharBox:
