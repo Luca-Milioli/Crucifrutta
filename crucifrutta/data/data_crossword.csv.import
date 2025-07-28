@@ -3,13 +3,11 @@
 importer="csv_translation"
 type="Translation"
 uid="uid://c5l6f0xd628dj"
+valid=false
 
 [deps]
 
-files=["res://data/data_crossword.È indispensabile per noi e per le piante.translation", "res://data/data_crossword.ACQUA.translation", "res://data/data_crossword.c.translation"]
-
 source_file="res://data/data_crossword.csv"
-dest_files=["res://data/data_crossword.È indispensabile per noi e per le piante.translation", "res://data/data_crossword.ACQUA.translation", "res://data/data_crossword.c.translation"]
 
 [params]
 

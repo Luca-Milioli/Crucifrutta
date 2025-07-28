@@ -1,10 +1,10 @@
 [gd_scene load_steps=9 format=3 uid="uid://mgklm4qm7xq8"]
 
-[ext_resource type="Script" uid="uid://c867yu0gx5yjf" path="res://scripts/gui/components/tutorial.gd" id="1_5jwdl"]
-[ext_resource type="Texture2D" uid="uid://cu4qefaolgr3i" path="res://art/graphics/Confirm.png" id="1_c13y7"]
+[ext_resource type="Script" uid="uid://kegtmfawetd4" path="res://scripts/gui/components/tutorial.gd" id="1_5jwdl"]
+[ext_resource type="Texture2D" uid="uid://ddmktaytpr4m6" path="res://art/graphics/Confirm.png" id="1_c13y7"]
 [ext_resource type="PackedScene" uid="uid://cixb2slrwfeax" path="res://scenes/components/buttons/custom_button.tscn" id="2_ph3nu"]
-[ext_resource type="FontFile" uid="uid://c3ii6qbpg4ulc" path="res://art/font/Roc_Grotesk_Bold.ttf" id="3_bkauq"]
-[ext_resource type="FontFile" uid="uid://by2fsotvgiu72" path="res://art/font/Roc_Grotesk_Medium.ttf" id="4_ooqid"]
+[ext_resource type="FontFile" uid="uid://o7lywgnhixr4" path="res://art/font/Roc_Grotesk_Bold.ttf" id="3_bkauq"]
+[ext_resource type="FontFile" uid="uid://hbsghem7xpj3" path="res://art/font/Roc_Grotesk_Medium.ttf" id="4_ooqid"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_c13y7"]
 font = ExtResource("3_bkauq")
