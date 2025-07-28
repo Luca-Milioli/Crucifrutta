@@ -6,6 +6,13 @@ func game_over():
 
 
 func _on_tree_entered() -> void:
+	await super.fade_in($".")
+	$Crossword/Timer.start()
+	$TutorialPopup.queue_free()
+	$TopBar.text_first_entrance()
+
+
+func _on_tree_entered_with_tutorial() -> void:
 	Utils.recursive_disable_buttons(self, true)
 	await super.fade_in($".")
 	await super.fade_in($TutorialPopup)
@@ -13,9 +20,9 @@ func _on_tree_entered() -> void:
 
 
 func _on_tutorial_popup_game_start() -> void:
-	Utils.recursive_disable_buttons(self, false)
-	$TutorialPopup/SplitContainer/Go.disabled = true
+	Utils.recursive_disable_buttons($TutorialPopup, true)
 	await super.fade_out($TutorialPopup)
+	Utils.recursive_disable_buttons(self, false)
 	$Crossword/Timer.start()
 	$TutorialPopup.queue_free()
 	$TopBar.text_first_entrance()

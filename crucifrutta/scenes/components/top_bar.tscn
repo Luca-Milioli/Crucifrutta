@@ -55,6 +55,7 @@ vertical_alignment = 2
 autowrap_mode = 2
 
 [node name="RetryButton" type="TextureButton" parent="."]
+visible = false
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 texture_normal = ExtResource("3_t8k76")

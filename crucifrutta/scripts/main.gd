@@ -1,6 +1,11 @@
 extends Node
 
 
+func _ready() -> void:
+	if has_node("Gui"):
+		_gameplay()
+
+
 func _on_end_menu_back_pressed():
 	get_tree().quit()
 
@@ -11,7 +16,16 @@ func _on_menu_play_pressed() -> void:
 
 	remove_child(menu)
 	menu.queue_free()
+	
+	var gui = preload("res://scenes/main_gui/gui.tscn").instantiate()
+	add_child(gui)
+	
+	_gameplay()
 
+
+func _gameplay():
+	$Gui.get_node("ResetPopup/SplitContainer/Go").pressed.connect(_on_reset)
+	
 	await _create_rounds()
 
 	var end_menu = preload("res://scenes/main_gui/menu/end_menu.tscn").instantiate()
@@ -33,17 +47,12 @@ func _on_reset():
 
 
 func _create_rounds():
-	var gui = preload("res://scenes/main_gui/gui.tscn").instantiate()
-
-	gui.get_node("ResetPopup/SplitContainer/Go").pressed.connect(_on_reset)
-	add_child(gui)
-
 	for i in range(GameLogic.MAX_ROUND):
 		var crossword = CrosswordFactory.create_crossword()
 
-		gui.crossword_setup(crossword)
+		$Gui.crossword_setup(crossword)
 
 		await GameLogic.crossword_finished
-		await gui.crossword_finished()
+		await $Gui.crossword_finished()
 
-	gui.game_over()
+	$Gui.game_over()
