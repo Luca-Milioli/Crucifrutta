@@ -1,7 +1,7 @@
 extends Node
 class_name DataManager
 
-const DATA_PATH = "res://data/data_crossword.csv"
+const DATA_PATH = "res://data/data_crossword.csv.txt"
 #const DATA_PATH = "res://data/test.csv"
 var all_crosswords: Array
 
