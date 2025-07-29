@@ -1,0 +1,6 @@
+NUMBER OF CROSSWORDS
+cruciverba1,definition,ANSWER,intersection
+cruciverba2,definition,ANSWER,intersection
+,  -> it will create a gray box
+...
+|  -> it will separate different crosswords  
