@@ -8,7 +8,6 @@
 [ext_resource type="PackedScene" uid="uid://dw0mpg87f3big" path="res://scenes/components/keyboard.tscn" id="6_ocqor"]
 
 [node name="Gui" type="Control"]
-modulate = Color(1, 1, 1, 0)
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -47,9 +46,13 @@ anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 offset_left = 118.0
-offset_top = 37.0
+offset_top = 29.0
 offset_right = 906.0
-offset_bottom = 101.0
+offset_bottom = 109.0
+
+[node name="Text" parent="TopBar" index="2"]
+modulate = Color(1, 1, 1, 0)
+text = "Clicca sulle colonne e inserisci le definizioni per svelare cosa ti aiutano a fare frutta e verdura!"
 
 [node name="Keyboard" parent="." instance=ExtResource("6_ocqor")]
 visible = false
@@ -70,5 +73,6 @@ grow_vertical = 0
 [connection signal="pressed" from="Keyboard/CloseButton" to="." method="_on_close_button_pressed"]
 [connection signal="pressed" from="Keyboard/Background/Confirm" to="." method="_on_confirm_pressed"]
 
+[editable path="TopBar"]
 [editable path="Keyboard"]
 [editable path="Keyboard/Background/Confirm"]
