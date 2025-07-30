@@ -30,6 +30,7 @@ func _fade(node: Node, final_node: float, final_gui: float, time = 0.6) -> void:
 
 
 func fade_in(node: Node, modulate: float = 1.0, other_modulate: float = 0.2) -> void:
+	node.modulate.a = 0
 	await _fade(node, modulate, other_modulate)
 
 

@@ -36,6 +36,6 @@ func _on_retry_button_pressed() -> void:
 
 func text_first_entrance() -> void:
 	$Text.modulate.a = 0.0
-	$Text.text = "Clicca sulle colonne e inserisci le definizioni per svelare cosa ti aiutano a fare frutta e verdura!"
+	$Text.visible = true
 	var tween = create_tween()
 	tween.tween_property($Text, "modulate:a", 1.0, 0.5)

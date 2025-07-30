@@ -1,10 +1,11 @@
-[gd_scene load_steps=19 format=3 uid="uid://dw0mpg87f3big"]
+[gd_scene load_steps=20 format=3 uid="uid://dw0mpg87f3big"]
 
 [ext_resource type="Script" uid="uid://bw7xbc77xqslh" path="res://scripts/gui/components/keyboard.gd" id="1_1yngc"]
 [ext_resource type="Texture2D" uid="uid://drkk1282juv30" path="res://art/graphics/buttons/CloseButton.png" id="1_crq44"]
 [ext_resource type="Texture2D" uid="uid://b3gfi7h5kagc" path="res://art/graphics/buttons/CloseHover.png" id="2_1hbf5"]
 [ext_resource type="Texture2D" uid="uid://ddmktaytpr4m6" path="res://art/graphics/Confirm.png" id="3_lowah"]
 [ext_resource type="FontFile" uid="uid://hbsghem7xpj3" path="res://art/font/Roc_Grotesk_Medium.ttf" id="4_1yngc"]
+[ext_resource type="Script" uid="uid://dpm7ioaeuqybp" path="res://scripts/gui/components/custom_button.gd" id="4_drl6p"]
 [ext_resource type="Texture2D" uid="uid://djn5k8l6sodab" path="res://art/graphics/slots/Display.png" id="5_drl6p"]
 [ext_resource type="FontFile" uid="uid://o7lywgnhixr4" path="res://art/font/Roc_Grotesk_Bold.ttf" id="6_hy5n8"]
 [ext_resource type="PackedScene" uid="uid://cixb2slrwfeax" path="res://scenes/components/buttons/custom_button.tscn" id="7_hl3es"]
@@ -70,6 +71,7 @@ texture_pressed = ExtResource("2_1hbf5")
 texture_hover = ExtResource("2_1hbf5")
 texture_disabled = ExtResource("1_crq44")
 ignore_texture_size = true
+script = ExtResource("4_drl6p")
 
 [node name="Definition" type="TextureRect" parent="."]
 custom_minimum_size = Vector2(816, 132)
@@ -175,6 +177,7 @@ theme_override_styles/disabled = ExtResource("8_lowah")
 theme_override_styles/hover = ExtResource("9_1yngc")
 theme_override_styles/pressed = ExtResource("9_1yngc")
 theme_override_styles/normal = ExtResource("8_lowah")
+script = ExtResource("4_drl6p")
 
 [node name="Confirm" parent="Background" instance=ExtResource("7_hl3es")]
 layout_mode = 1
@@ -186,5 +189,8 @@ shortcut = SubResource("Shortcut_hl3es")
 [node name="Text" parent="Background/Confirm" index="0"]
 text = "Conferma"
 label_settings = SubResource("LabelSettings_6jib3")
+
+[connection signal="pressed" from="CloseButton" to="CloseButton" method="_on_pressed"]
+[connection signal="pressed" from="Background/Keyboard/ThirdRow/Backspace" to="Background/Keyboard/ThirdRow/Backspace" method="_on_pressed"]
 
 [editable path="Background/Confirm"]

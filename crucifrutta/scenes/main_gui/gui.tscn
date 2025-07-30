@@ -8,7 +8,6 @@
 [ext_resource type="PackedScene" uid="uid://dw0mpg87f3big" path="res://scenes/components/keyboard.tscn" id="6_ocqor"]
 
 [node name="Gui" type="Control"]
-modulate = Color(1, 1, 1, 0)
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -24,6 +23,7 @@ offset_bottom = 40.0
 texture = ExtResource("2_k8xsf")
 
 [node name="TutorialPopup" parent="." instance=ExtResource("2_8h14w")]
+visible = false
 modulate = Color(1, 1, 1, 0)
 offset_left = 200.0
 offset_top = 247.0
@@ -50,6 +50,10 @@ offset_top = 37.0
 offset_right = 906.0
 offset_bottom = 101.0
 
+[node name="Text" parent="TopBar" index="2"]
+modulate = Color(1, 1, 1, 0)
+text = "Clicca sulle colonne e inserisci le definizioni per svelare cosa ti aiutano a fare frutta e verdura!"
+
 [node name="Keyboard" parent="." instance=ExtResource("6_ocqor")]
 visible = false
 modulate = Color(1, 1, 1, 0)
@@ -66,8 +70,10 @@ grow_vertical = 0
 [connection signal="game_start" from="TutorialPopup" to="." method="_on_tutorial_popup_game_start"]
 [connection signal="cancel" from="ResetPopup" to="." method="_on_reset_popup_cancel"]
 [connection signal="retry_pressed" from="TopBar" to="." method="_on_top_bar_retry_pressed"]
+[connection signal="visibility_changed" from="Keyboard" to="Keyboard" method="_on_visibility_changed"]
 [connection signal="pressed" from="Keyboard/CloseButton" to="." method="_on_close_button_pressed"]
 [connection signal="pressed" from="Keyboard/Background/Confirm" to="." method="_on_confirm_pressed"]
 
+[editable path="TopBar"]
 [editable path="Keyboard"]
 [editable path="Keyboard/Background/Confirm"]
