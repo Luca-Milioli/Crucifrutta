@@ -99,3 +99,8 @@ func _unhandled_input(event):
 				_press_button(button_node)
 		elif key_string == "Backspace":
 			_press_button($Background/Keyboard/ThirdRow/Backspace)
+
+
+func _on_visibility_changed() -> void:
+	if self.visible:
+		AudioManager.popup()

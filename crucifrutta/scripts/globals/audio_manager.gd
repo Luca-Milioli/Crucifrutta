@@ -43,6 +43,7 @@ func wrong():
 
 
 func tap():
+	print("a")
 	$Tap.play()
 
 

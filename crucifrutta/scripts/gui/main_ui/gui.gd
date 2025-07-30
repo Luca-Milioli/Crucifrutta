@@ -8,6 +8,7 @@ func game_over():
 func _on_tree_entered() -> void:
 	Utils.recursive_disable_buttons(self, true)
 	await super.fade_in($".")
+	$TutorialPopup.visible = true
 	await super.fade_in($TutorialPopup)
 	Utils.recursive_disable_buttons($TutorialPopup, false)
 

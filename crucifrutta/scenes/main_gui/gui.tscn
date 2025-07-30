@@ -24,6 +24,7 @@ offset_bottom = 40.0
 texture = ExtResource("2_k8xsf")
 
 [node name="TutorialPopup" parent="." instance=ExtResource("2_8h14w")]
+visible = false
 modulate = Color(1, 1, 1, 0)
 offset_left = 200.0
 offset_top = 247.0

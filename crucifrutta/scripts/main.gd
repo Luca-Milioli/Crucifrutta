@@ -1,8 +1,13 @@
 extends Node
 
+const URL = "https://spreafico.net/"
 
 func _on_end_menu_back_pressed():
-	get_tree().quit()
+	if OS.get_name() == "Web":
+		var js = Engine.get_singleton("JavaScriptBridge")
+		js.call("eval", "window.location.href = '" + URL + "';")
+	else:
+		get_tree().quit()
 
 
 func _on_menu_play_pressed() -> void:
