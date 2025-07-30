@@ -2,6 +2,7 @@ extends Node
 
 const URL = "https://spreafico.net/"
 
+
 func _on_end_menu_back_pressed():
 	if OS.get_name() == "Web":
 		var js = Engine.get_singleton("JavaScriptBridge")

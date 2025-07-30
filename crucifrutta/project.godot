@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="Crucifrutta"
+config/name="CrucifruttaV1"
 run/main_scene="uid://ce2uirdja3rif"
 config/features=PackedStringArray("4.4", "Mobile")
 config/icon="res://icon.png"
