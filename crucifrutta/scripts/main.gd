@@ -2,6 +2,7 @@ extends Node
 
 const URL = "https://spreafico.net/"
 
+
 func _ready() -> void:
 	if has_node("Gui"):
 		_gameplay()
@@ -21,16 +22,16 @@ func _on_menu_play_pressed() -> void:
 
 	remove_child(menu)
 	menu.queue_free()
-	
+
 	var gui = preload("res://scenes/main_gui/gui.tscn").instantiate()
 	add_child(gui)
-	
+
 	_gameplay()
 
 
 func _gameplay():
 	$Gui.get_node("ResetPopup/SplitContainer/Go").pressed.connect(_on_reset)
-	
+
 	await _create_rounds()
 
 	var end_menu = preload("res://scenes/main_gui/menu/end_menu.tscn").instantiate()
