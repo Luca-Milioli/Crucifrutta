@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bsnba58hctvj6"]
 
-[ext_resource type="Script" uid="uid://bh6g7lurfqfsw" path="res://scripts/gui/components/crossword_gui.gd" id="1_ci73n"]
+[ext_resource type="Script" uid="uid://u8xyjlwl7241" path="res://scripts/gui/components/crossword_gui.gd" id="1_ci73n"]
 
 [node name="Crossword" type="GridContainer"]
 anchors_preset = 8
@@ -21,4 +21,8 @@ script = ExtResource("1_ci73n")
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.015
 
+[node name="IdleAnimation" type="Timer" parent="."]
+wait_time = 4.5
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="IdleAnimation" to="." method="_on_idle_animation_timeout"]

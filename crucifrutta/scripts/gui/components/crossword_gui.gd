@@ -17,10 +17,30 @@ func gui_checks(left_length: int, max_words: int) -> bool:
 
 
 func _get_selected_row_boxes() -> Array:
-	var start_index = self.get("columns") * self._selected_row_index + 1  # timer is first
+	var start_index = self.get("columns") * self._selected_row_index + 2  # timers are first
 	var end_index = start_index + self.get("columns")
 	return get_children().slice(start_index, end_index)
 
+func animate_row(correct: bool):
+	if correct:
+		for i in _get_selected_row_boxes():
+			if i is CharBox:
+				i.correct_animation()
+	else:
+		var last_char
+		var reversed_boxes = _get_selected_row_boxes()
+		reversed_boxes.reverse()
+		for box in reversed_boxes:
+			if box is CharBox:
+				last_char = box
+				break
+				
+		for i in _get_selected_row_boxes():
+			if i is CharBox:
+				if i != last_char:
+					i.wrong_animation()
+				else:
+					await i.wrong_animation()
 
 func setup(charMatrix: Array[Array], highlighted_column: int):
 	var charbox_to_instantiate = preload("res://scenes/components/boxes/char_box.tscn")
@@ -100,3 +120,19 @@ func clear_row_text() -> void:
 		if box is CharBox:
 			await get_tree().process_frame
 			box.get_node("Char").set_text("")
+
+
+func _on_idle_animation_timeout() -> void:
+	var children = get_children()
+	var char_boxes = []
+	
+	for child in children:
+		if child.get_name().contains("default") and child.get_node("Char").text != "" and not child.is_animating():
+			char_boxes.append(child)
+	
+	var box_to_animate = char_boxes.pick_random()
+	
+	if box_to_animate:
+		# so correct and idle dont overlaps on the same frame
+		await get_tree().process_frame
+		box_to_animate.correct_animation()

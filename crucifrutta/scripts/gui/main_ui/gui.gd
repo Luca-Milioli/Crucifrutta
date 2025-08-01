@@ -99,8 +99,12 @@ func _on_confirm_pressed() -> void:
 	await _close_keyboard()
 	if not GameLogic.answer_given(text, $Crossword.get("_selected_row_index")):
 		AudioManager.wrong()
+		await $Crossword.animate_row(false)
 		$Crossword.clear_row_text()
 	else:
 		AudioManager.correct()
 		if $Crossword:
+			$Crossword.animate_row(true)
 			$Crossword.disable_row()
+		if $Crossword/IdleAnimation.is_stopped():
+			$Crossword/IdleAnimation.start()
