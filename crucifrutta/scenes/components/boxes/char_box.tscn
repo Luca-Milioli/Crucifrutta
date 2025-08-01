@@ -25,6 +25,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+pivot_offset = Vector2(18, 18)
 label_settings = ExtResource("4_t0lj3")
 horizontal_alignment = 1
 vertical_alignment = 1

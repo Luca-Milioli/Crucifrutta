@@ -21,4 +21,8 @@ script = ExtResource("1_ci73n")
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.015
 
+[node name="IdleAnimation" type="Timer" parent="."]
+wait_time = 4.5
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="IdleAnimation" to="." method="_on_idle_animation_timeout"]
