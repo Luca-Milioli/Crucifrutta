@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://cpqsxu6a3lceo" path="res://art/graphics/buttons/HoveredAudioButton.png" id="2_ch1ap"]
 [ext_resource type="Texture2D" uid="uid://doviwsw03yead" path="res://art/graphics/buttons/AudioEnabled.png" id="3_nts21"]
 [ext_resource type="Texture2D" uid="uid://q1ap2f0doqqi" path="res://art/graphics/buttons/RetryButton.png" id="3_t8k76"]
-[ext_resource type="Script" uid="uid://dpm7ioaeuqybp" path="res://scripts/gui/components/custom_button.gd" id="4_amswt"]
+[ext_resource type="Script" uid="uid://bjmuorr6hlcyu" path="res://scripts/gui/components/custom_button.gd" id="4_amswt"]
 [ext_resource type="Texture2D" uid="uid://i33smyt1e1mp" path="res://art/graphics/buttons/HoveredRetryButton.png" id="4_ch1ap"]
 [ext_resource type="FontFile" uid="uid://ciy0t4j3ygwsc" path="res://art/font/SkippySharp.ttf" id="4_p8s5q"]
 [ext_resource type="Texture2D" uid="uid://dw6e74ki3dm0u" path="res://art/graphics/buttons/HoveredAudioEnabled.png" id="5_glubf"]
