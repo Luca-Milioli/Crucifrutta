@@ -62,3 +62,8 @@ func _create_rounds():
 		await $Gui.crossword_finished()
 
 	$Gui.game_over()
+
+
+func _on_child_entered_tree(node: Node) -> void:
+	if has_node("FullScreenButton"):
+		move_child.call_deferred($FullScreenButton, -1)
