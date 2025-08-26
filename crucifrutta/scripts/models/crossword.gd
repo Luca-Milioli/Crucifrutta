@@ -1,12 +1,16 @@
+## Class that represent the Crossword model.
 class_name Crossword
 
+## Array containing every item of the crossword (rows).
 var _crossword_items: Array[CrosswordItem]
 
 
+## Sets the crossword items of crossword.
 func _init(crossword_items: Array[CrosswordItem]) -> void:
 	set("_crossword_items", crossword_items)
 
 
+## Returns the final crossword word, adding every letter in the intersection.
 func calculate_final_word() -> String:
 	var final_word = ""
 	for word in self._crossword_items:
@@ -15,6 +19,7 @@ func calculate_final_word() -> String:
 	return final_word
 
 
+## To string method, usefull for debug.
 func _to_string() -> String:
 	var text = ""
 	var i = 1
@@ -30,6 +35,7 @@ func _to_string() -> String:
 	return text
 
 
+## Calculate the max left length of a row (from left to center).
 func left_length() -> int:  # from the beginning to column highligthed
 	var left_length = 0
 
@@ -43,6 +49,7 @@ func left_length() -> int:  # from the beginning to column highligthed
 	return left_length
 
 
+## Calculates the max right length of a word (from center to right).
 func right_length() -> int:  # from column highlighted to the end
 	var right_length = 0
 
@@ -57,14 +64,17 @@ func right_length() -> int:  # from column highlighted to the end
 	return right_length
 
 
+## Gets the max row length (left + right + 1).
 func get_length() -> int:
 	return left_length() + right_length() + 1
 
 
+## Gets the height of crossword (the number of words + gray buttons).
 func get_height() -> int:
 	return self._crossword_items.size()
 
 
+## Returns the number of words.
 func get_n_words() -> int:
 	var n_words = 0
 	for item in _crossword_items:
@@ -73,10 +83,12 @@ func get_n_words() -> int:
 	return n_words
 
 
+## Returns the index of center coloumn.
 func column_highlighted() -> int:
 	return left_length()
 
 
+## Clear the row (called when answer is wrong).
 func empty_row(length: int) -> Array:
 	var row: Array
 	for i in range(length):
@@ -84,6 +96,7 @@ func empty_row(length: int) -> Array:
 	return row
 
 
+## Converts the object to a matrix.
 func to_matrix() -> Array[Array]:
 	var matrix: Array[Array]
 	var left_length = left_length()

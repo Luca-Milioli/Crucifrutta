@@ -1,11 +1,16 @@
+## Script for data management.
+
 extends Node
 class_name DataManager
 
+## path where data is located.
 const DATA_PATH = "res://data/data_crossword.csv.txt"
-#const DATA_PATH = "res://data/test.csv"
+
+## array of crosswords.
 var all_crosswords: Array
 
 
+## static getter for max round of the game.
 static func get_max_rounds():
 	var file = FileAccess.open(DATA_PATH, FileAccess.READ)
 	var rounds = file.get_line().to_int()
@@ -14,10 +19,12 @@ static func get_max_rounds():
 	return rounds
 
 
+## Resets all variables of class, called when the game restarts.
 func reset():
 	self.all_crosswords = []
 
 
+## Creates a data dict reading a csv, appends the dict to all_crosswords array.
 func read_csv(separator: String = ","):
 	if not all_crosswords.is_empty():
 		return all_crosswords

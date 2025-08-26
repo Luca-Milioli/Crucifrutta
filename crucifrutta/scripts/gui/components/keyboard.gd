@@ -1,10 +1,18 @@
+## Class that represents the virtual keyboard. It extends a VBoxContainer.
 extends VBoxContainer
+class_name Keyboard
 
+## Boolean that represent when the user is dragging the keyboard.
 var _is_dragging: bool = false
+
+## Vector (x, y) that represents the drag offset.
 var _drag_offset: Vector2
+
+## Max length of the text in display.
 var _max_length: int
 
 
+## Creates buttons and connects signals.
 func _ready() -> void:
 	_create_buttons()
 	$Background/Keyboard/ThirdRow/Backspace.connect(
@@ -13,15 +21,18 @@ func _ready() -> void:
 	$Background/Keyboard/ThirdRow.move_child($Background/Keyboard/ThirdRow/Backspace, -1)
 
 
+## Reset the keyboard. Called every respawn.
 func reset():
 	$Background/Display/Label.set_text("")
 	self.visible = false
 
 
+## Sets the word definition.
 func set_definition(text: String, length: int):
 	$Definition/Label.set_text(text + " [" + str(length) + "]")
 
 
+## Creates a button that contains a char and a tap audio.
 func _create_button(letter: String) -> Button:
 	var button = preload("res://scenes/components/buttons/square_button.tscn").instantiate()
 	button.get_node("Text").set_text(letter)
@@ -30,6 +41,7 @@ func _create_button(letter: String) -> Button:
 	return button
 
 
+## Creates every button of the keyboard.
 func _create_buttons() -> void:
 	var rows = ["QWERTYUIOP", "ASDFGHJKL", "ZXCVBNM"]
 
@@ -41,6 +53,8 @@ func _create_buttons() -> void:
 			i += 1
 
 
+## Changes the text visible in the display. It's called on every user interaction with the
+## keyboard buttons. It works with real buttons too.
 func _new_text(button_pressed) -> String:
 	var text = $Background/Display/Label.get_text() as String
 
@@ -55,10 +69,12 @@ func _new_text(button_pressed) -> String:
 	return text
 
 
+## Called every time the user presses a button.
 func _on_button_pressed(button):
 	$Background/Display/Label.set_text(_new_text(button))
 
 
+## Checks the user mouse interaction with the gui (dragging).
 func _gui_input(event):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		if event.pressed:
@@ -68,6 +84,7 @@ func _gui_input(event):
 			_is_dragging = false
 
 
+## Called every frame, checks the dragging and moves the keyboard.
 func _process(_delta):
 	if _is_dragging:
 		var mouse_pos = get_viewport().get_mouse_position() - _drag_offset
@@ -80,6 +97,8 @@ func _process(_delta):
 		global_position = mouse_pos
 
 
+## Called when the button is pressed from real keyboard, simulating everything that
+## happens when the virtual button is pressed.
 func _press_button(button: Button) -> void:
 	button.pressed.emit()
 	button.toggle_mode = true
@@ -89,6 +108,7 @@ func _press_button(button: Button) -> void:
 	button.toggle_mode = false
 
 
+## Handles every (real) keyboard input.
 func _unhandled_input(event):
 	if event is InputEventKey and event.pressed:
 		var key_string = OS.get_keycode_string(event.keycode)
@@ -101,6 +121,7 @@ func _unhandled_input(event):
 			_press_button($Background/Keyboard/ThirdRow/Backspace)
 
 
+## Called everytime the visibility changes. It plays a popup sound.
 func _on_visibility_changed() -> void:
 	if self.visible:
 		AudioManager.popup()

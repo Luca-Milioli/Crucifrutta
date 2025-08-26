@@ -1,8 +1,11 @@
-extends Object
+# Script for general usefull method. It contains static methods only.
 
+extends Object
 class_name Utils
 
 
+## Method called for enabling or disabling every button contained in a node
+## recursevely.
 static func recursive_disable_buttons(obj: Node, disabled):
 	var children = obj.get_children()
 	if obj is BaseButton:
