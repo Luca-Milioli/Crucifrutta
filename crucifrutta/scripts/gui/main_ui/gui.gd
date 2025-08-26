@@ -56,7 +56,7 @@ func crossword_setup(crossword: Crossword) -> void:
 	crossword_gui.gui_checks(crossword.left_length(), height)
 
 	crossword_gui.set("columns", length)
-	crossword_gui.setup(crossword.to_matrix(), crossword.column_highlighted())
+	crossword_gui.setup(crossword.to_matrix(), crossword.column_highlighted(), crossword.help_list())
 
 	add_child(crossword_gui)
 
@@ -84,6 +84,14 @@ func _on_spawn_keyboard() -> void:
 	Utils.recursive_disable_buttons($Keyboard, false)
 	$Keyboard.visible = true
 	$Keyboard.set_definition(GameLogic.get_item_definition(row_index), answer_length)
+	
+	var i = 0
+	var underscores = ""
+	while i < answer_length:
+		underscores += "_ "
+		i += 1
+	$Keyboard/Background/Display/Label.text = underscores
+	
 	super.fade_in($Keyboard, 1.0, 0.8)
 
 
@@ -110,7 +118,10 @@ func _on_close_button_pressed() -> void:
 ## Called when confirm button is pressed. It changes the row text, calls to check if the
 ## given answer is correct, play correct or wrong audio and animates eveything.
 func _on_confirm_pressed() -> void:
+	Utils.recursive_disable_buttons(self, true)
+	
 	var text: String = $Keyboard/Background/Display/Label.get_text()
+	text = text.replace(" ","").replace("_", "")
 	$Crossword.change_row_text(text)
 
 	await _close_keyboard()

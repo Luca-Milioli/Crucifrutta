@@ -19,10 +19,10 @@ func create_crossword() -> Crossword:
 		var crossword_item
 		if dict:
 			crossword_item = CrosswordItem.new(
-				dict["definition"], dict["answer"], dict["intersection"]
+				dict["definition"], dict["answer"], dict["intersection"], dict["help_char"]
 			)
 		else:
-			crossword_item = CrosswordItem.new("", "", "")
+			crossword_item = CrosswordItem.new("", "", "", "")
 		crossword_items.append(crossword_item)
 	var crossword = Crossword.new(crossword_items)
 	GameLogic.set_current_crossword(crossword)

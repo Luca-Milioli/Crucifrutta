@@ -13,18 +13,22 @@ var _answer: String
 ## First char that intersects with the final word.
 var _intersection: String
 
+## First char shown to help the user
+var _help_char: String
+
 ## Direction of the crossword item.
 var _direction: DIRECTION
 
 
 ## Creates a crossword item giving parameters. Default direction is left-to-right.
 func _init(
-	definition: String, answer: String, intersection: String, direction = DIRECTION.LEFT_TO_RIGHT
+	definition: String, answer: String, intersection: String, help_char: String, direction = DIRECTION.LEFT_TO_RIGHT
 ) -> void:
 	set("_definition", definition)
 	set("_answer", answer)
 	set("_intersection", intersection)
 	set("_direction", direction)
+	set("_help_char", help_char)
 
 
 ## Calculates the shift depending on the intersection character

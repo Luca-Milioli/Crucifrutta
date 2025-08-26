@@ -57,16 +57,17 @@ func animate_row(correct: bool):
 
 
 ## Setup all the boxes of the crossword.
-func setup(charMatrix: Array[Array], highlighted_column: int):
+func setup(charMatrix: Array[Array], highlighted_column: int, help_list: Array):
 	var charbox_to_instantiate = preload("res://scenes/components/boxes/char_box.tscn")
 	var emptybox_to_instantiate = preload("res://scenes/components/boxes/empy_cell.tscn")
 	var graybox_to_instantiate = preload("res://scenes/components/boxes/gray_char_box.tscn")
 	var orange_texture = preload("res://art/graphics/slots/OrangeSlot.png")
 	var orange_texture_hover = preload("res://art/graphics/slots/OrangeHoverSlot.png")
-
+	
 	var j = 0
 	for row in charMatrix:
 		var i = 0
+		var col_index = 0
 		for char in row:
 			var box: Node
 			match char:
@@ -79,13 +80,18 @@ func setup(charMatrix: Array[Array], highlighted_column: int):
 				_:
 					box = charbox_to_instantiate.instantiate()
 					box.set_name("default:" + str(i + (j * get("columns"))))
+					if str(help_list[j][1]).is_valid_int() and col_index == help_list[j][1]:
+						box.get_node("Char").set_text(help_list[j][0])
+						box.set_tip_box(true)
 					if i == highlighted_column:
 						box.set("texture_normal", orange_texture)
 						box.set("texture_disabled", orange_texture)
 						box.set("texture_hover", orange_texture_hover)
 						box.set("texture_pressed", orange_texture_hover)
-
+					
 					box.connect("pressed", _on_charbox_clicked.bind(charMatrix.find(row)))
+					col_index+=1
+					
 			self._child_list.append(box)
 			i += 1
 		j += 1
@@ -121,10 +127,19 @@ func change_row_text(text) -> void:
 		i += 1
 
 	var j = 0
+	var tip_char
+	var tip_box
 	while j < text.length() and selected_row_boxes[i + j] is CharBox:
+		if selected_row_boxes[i + j].is_tip_box():
+			tip_box = selected_row_boxes[i + j]
+			tip_char = tip_box.get_node("Char").get_text()
 		(selected_row_boxes[i + j] as Node).get_node("Char").set_text(text[j])
 		j += 1
-
+	
+	if selected_row_boxes[i + j - 1] is CharBox:
+		await selected_row_boxes[i + j - 1].wrong_animation_done
+	if tip_box:
+		tip_box.get_node("Char").set_text(tip_char)
 
 ## Disables a row (called when the answer is correct).
 func disable_row():
@@ -137,9 +152,9 @@ func disable_row():
 ## Clears text of a row (called when the answer is wrong).
 func clear_row_text() -> void:
 	for box in _get_selected_row_boxes():
-		if box is CharBox:
+		if box is CharBox and not box.is_tip_box():
 			await get_tree().process_frame
-			box.get_node("Char").set_text("")
+			box.get_node("Char").set_text("") 
 
 
 ## Plays an idle animation every timeout.

@@ -29,7 +29,7 @@ func reset():
 
 ## Sets the word definition.
 func set_definition(text: String, length: int):
-	$Definition/Label.set_text(text + " [" + str(length) + "]")
+	$Background/Label.set_text(text)
 
 
 ## Creates a button that contains a char and a tap audio.
@@ -55,23 +55,40 @@ func _create_buttons() -> void:
 
 ## Changes the text visible in the display. It's called on every user interaction with the
 ## keyboard buttons. It works with real buttons too.
-func _new_text(button_pressed) -> String:
+func new_text(button_pressed) -> String:
 	var text = $Background/Display/Label.get_text() as String
 
 	if button_pressed == $Background/Keyboard/ThirdRow/Backspace:
-		text = text.substr(0, text.length() - 1)
+		var chars = text.split("")
+		for i in range(chars.size() - 1, -1, -1):  # start from the end
+			if chars[i] != "_" and chars[i] != " ":
+				chars[i] = "_"
+				break
+		text = "".join(chars)
 		return text
 
+	
 	if button_pressed != $Background/Confirm:
-		if text.length() < _max_length:
-			text += button_pressed.get_node("Text").get_text()
-
+		if text.length() < _max_length * 10:  # ogni lettera è seguita da uno spazio
+			var pressed_char = button_pressed.get_node("Text").get_text()
+			var chars = text.split("")  # trasformo la stringa in array di caratteri
+			
+			# Trovo il primo underscore libero
+			var i = 0
+			while  i < chars.size() - 1 and chars[i] != "_":
+				i += 1
+			if i < chars.size() - 1:
+				chars[i] = pressed_char
+			
+			text = "".join(chars)
+		
 	return text
+
 
 
 ## Called every time the user presses a button.
 func _on_button_pressed(button):
-	$Background/Display/Label.set_text(_new_text(button))
+	$Background/Display/Label.set_text(new_text(button))
 
 
 ## Checks the user mouse interaction with the gui (dragging).

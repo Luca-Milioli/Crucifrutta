@@ -88,6 +88,16 @@ func column_highlighted() -> int:
 	return left_length()
 
 
+func help_list() -> Array:
+	var help_list = []
+	for row in _crossword_items:
+		var help_char = row.get("_help_char") if row != null else null
+		var to_append = row.get("_answer").to_lower().find(help_char) if not help_char.is_empty() else ""
+		help_list.append([help_char, to_append])
+		
+	return help_list
+	
+	
 ## Clear the row (called when answer is wrong).
 func empty_row(length: int) -> Array:
 	var row: Array

@@ -1,6 +1,6 @@
 NUMBER OF CROSSWORDS
-cruciverba1,definition,ANSWER,intersection
-cruciverba2,definition,ANSWER,intersection
+cruciverba1,definition,ANSWER,intersection,help_char
+cruciverba2,definition,ANSWER,intersection,help_char
 ,  -> it will create a gray box
 ...
 |  -> it will separate different crosswords  

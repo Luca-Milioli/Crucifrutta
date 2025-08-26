@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://dujdqfwmue2ch"]
 
 [ext_resource type="PackedScene" uid="uid://c1t2pn4wepmpt" path="res://scenes/main_gui/menu/menu.tscn" id="1_albv7"]
-[ext_resource type="Texture2D" uid="uid://cckx3pd13a0og" path="res://art/graphics/backgrounds/WinnerBackground.jpg" id="2_87tj7"]
+[ext_resource type="Texture2D" uid="uid://dd56fals4vg5" path="res://art/graphics/backgrounds/WinnerBackground.jpg" id="2_87tj7"]
 [ext_resource type="FontFile" uid="uid://ciy0t4j3ygwsc" path="res://art/font/SkippySharp.ttf" id="3_gt641"]
 [ext_resource type="PackedScene" uid="uid://bieiqc1mo6u2r" path="res://scenes/components/top_bar.tscn" id="3_pwu44"]
 [ext_resource type="FontFile" uid="uid://o7lywgnhixr4" path="res://art/font/Roc_Grotesk_Bold.ttf" id="3_yb7sc"]
@@ -28,8 +28,7 @@ offset_left = -300.0
 offset_top = -34.0
 offset_right = 300.0
 offset_bottom = 94.0
-text = "Hai completato il gioco!
-Rigioca per migliorare le tue capacità!"
+text = "Hai completato il gioco!"
 label_settings = SubResource("LabelSettings_0yb4r")
 
 [node name="Play" parent="." index="2"]
