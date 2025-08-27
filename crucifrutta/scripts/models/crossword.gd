@@ -88,6 +88,8 @@ func column_highlighted() -> int:
 	return left_length()
 
 
+## Return the list of already displayed char in the format:
+## [help_char_1, answer_1], [help_char_2, answer_2], ... , [help_char_n, answer_n]
 func help_list() -> Array:
 	var help_list = []
 	for row in _crossword_items:

@@ -3,7 +3,7 @@
 [ext_resource type="StyleBox" uid="uid://b2doi7du2nq53" path="res://art/styleboxes/normal_button.tres" id="1_bfr1r"]
 [ext_resource type="StyleBox" uid="uid://r7f1u1uip66p" path="res://art/styleboxes/hover_button.tres" id="2_32hcy"]
 [ext_resource type="LabelSettings" uid="uid://cv8csea2dlti8" path="res://art/styleboxes/label_settings_40.tres" id="3_16a54"]
-[ext_resource type="Script" uid="uid://dpm7ioaeuqybp" path="res://scripts/gui/components/custom_button.gd" id="3_vr6ol"]
+[ext_resource type="Script" uid="uid://bjmuorr6hlcyu" path="res://scripts/gui/components/custom_button.gd" id="3_vr6ol"]
 
 [node name="CustomButton" type="Button"]
 anchors_preset = 8

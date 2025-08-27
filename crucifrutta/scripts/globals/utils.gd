@@ -1,5 +1,4 @@
-# Script for general usefull method. It contains static methods only.
-
+## Script for general usefull method. It contains static methods only.
 extends Object
 class_name Utils
 

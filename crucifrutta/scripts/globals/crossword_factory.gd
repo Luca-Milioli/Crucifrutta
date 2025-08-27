@@ -1,7 +1,5 @@
 ## Singleton script for creating crossword objects.
-
 extends DataManager
-class_name CrosswordFactoryScript
 
 
 ## Returns a crossword object reading csv.

@@ -1,5 +1,4 @@
 ## Class that represents a basic popup with button "Go" and "Nope".
-
 extends Control
 class_name Tutorial
 

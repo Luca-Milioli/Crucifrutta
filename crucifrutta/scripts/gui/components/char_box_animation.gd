@@ -1,5 +1,4 @@
 ## Class that represents the box containing a char.
-
 extends TextureButton
 class_name CharBox
 
