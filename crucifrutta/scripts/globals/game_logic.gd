@@ -1,8 +1,6 @@
 ## Script that contains main logic of the game. It manages what happens after user
 ## interactions and how to end the game.
-
 extends Node
-class_name GameLogicScript
 
 ## Emitted when a crossword is finished.
 signal crossword_finished

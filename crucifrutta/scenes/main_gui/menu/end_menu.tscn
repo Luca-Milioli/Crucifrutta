@@ -39,7 +39,7 @@ offset_bottom = -86.0
 scale = Vector2(1, 0.96)
 
 [node name="Text" parent="Play" index="0"]
-text = "Rigioca"
+text = "Gioca ancora"
 label_settings = SubResource("LabelSettings_bugxa")
 
 [node name="Back" parent="." index="3" instance=ExtResource("4_gt641")]
@@ -55,7 +55,7 @@ grow_vertical = 0
 scale = Vector2(1, 0.96)
 
 [node name="Text" parent="Back" index="0"]
-text = "Torna al sito"
+text = "Cambia gioco"
 label_settings = SubResource("LabelSettings_bugxa")
 
 [node name="ResetPopup" parent="." index="4" instance=ExtResource("6_wqo5a")]

@@ -1,6 +1,5 @@
 ## Manages FullScreen or WindowMode.
 extends TextureButton
-
 class_name FullScreenButton
 
 

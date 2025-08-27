@@ -1,5 +1,4 @@
 ## Script for data management.
-
 extends Node
 class_name DataManager
 
