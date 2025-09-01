@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://cb2njq6eccg7x"]
 
-[ext_resource type="Texture2D" uid="uid://dini3fncsnsjl" path="res://art/graphics/buttons/Fullscreen.png" id="1_rxsfy"]
-[ext_resource type="Script" uid="uid://bgw1sc4tgbiyi" path="res://scripts/gui/components/full_screen_button.gd" id="1_uh0l1"]
-[ext_resource type="Texture2D" uid="uid://bxmna81bv4b1l" path="res://art/graphics/buttons/FullscreenHover.png" id="2_a4oql"]
+[ext_resource type="Texture2D" uid="uid://c8raemelexfrv" path="res://art/graphics/buttons/Fullscreen.png" id="1_rxsfy"]
+[ext_resource type="Script" uid="uid://cpklmj0rviniy" path="res://scripts/gui/components/full_screen_button.gd" id="1_uh0l1"]
+[ext_resource type="Texture2D" uid="uid://cn6lyv1bv04ry" path="res://art/graphics/buttons/FullscreenHover.png" id="2_a4oql"]
 
 [node name="FullScreenButton" type="TextureButton"]
 anchors_preset = 8
