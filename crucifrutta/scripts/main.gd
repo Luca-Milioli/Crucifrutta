@@ -9,7 +9,9 @@ const URL = "https://spreafico.net/"
 ## Checks if node gui is ready (if yes, game can start) or not yet.
 ## In the v2 version there's not main menu so the gui is already in scene.
 func _ready() -> void:
-	if has_node("Gui"):
+	get_tree().root.transparent_bg = true
+	
+	if $SubViewportContainer/SubViewport.has_node("Gui"):
 		_gameplay()
 
 
@@ -26,14 +28,14 @@ func _on_end_menu_back_pressed():
 ## When "play" button is pressed, main menu gets killed and the gui scene is instantiated.
 ## Now the game can start (in v2, this method is never called)
 func _on_menu_play_pressed() -> void:
-	var menu = get_node("Menu")
+	var menu = $SubViewportContainer/SubViewport.get_node("Menu")
 	await menu.kill()
 
-	remove_child(menu)
+	$SubViewportContainer/SubViewport.remove_child(menu)
 	menu.queue_free()
 
 	var gui = preload("res://scenes/main_gui/gui.tscn").instantiate()
-	add_child(gui)
+	$SubViewportContainer/SubViewport.add_child(gui)
 
 	_gameplay()
 
@@ -41,7 +43,7 @@ func _on_menu_play_pressed() -> void:
 ## Main function of the game. Creates rounds, setups end menu and awaits until the game
 ## is over.
 func _gameplay():
-	$Gui.get_node("ResetPopup/SplitContainer/Go").pressed.connect(_on_reset)
+	$SubViewportContainer/SubViewport/Gui.get_node("ResetPopup/SplitContainer/Go").pressed.connect(_on_reset)
 
 	await _create_rounds()
 
@@ -50,10 +52,10 @@ func _gameplay():
 	end_menu.back_pressed.connect(_on_end_menu_back_pressed)
 	end_menu.play_pressed.connect(_on_reset)
 
-	await $Gui.kill()
-	$Gui.queue_free()
+	await $SubViewportContainer/SubViewport/Gui.kill()
+	$SubViewportContainer/SubViewport/Gui.queue_free()
 
-	add_child(end_menu)
+	$SubViewportContainer/SubViewport.add_child(end_menu)
 
 
 ## Resets every singleton and reload the current scene.
@@ -71,15 +73,15 @@ func _create_rounds():
 	for i in range(GameLogic.MAX_ROUND):
 		var crossword = CrosswordFactory.create_crossword()
 
-		$Gui.crossword_setup(crossword)
+		$SubViewportContainer/SubViewport/Gui.crossword_setup(crossword)
 
 		await GameLogic.crossword_finished
-		await $Gui.crossword_finished()
+		await $SubViewportContainer/SubViewport/Gui.crossword_finished()
 
-	$Gui.game_over()
+	$SubViewportContainer/SubViewport/Gui.game_over()
 
 
 ## Called when a child is added. It moves FullScreenButton in last position.
 func _on_child_entered_tree(node: Node) -> void:
-	if has_node("FullScreenButton"):
-		move_child.call_deferred($FullScreenButton, -1)
+	if $SubViewportContainer/SubViewport.has_node("FullScreenButton"):
+		$SubViewportContainer/SubViewport.move_child.call_deferred($SubViewportContainer/SubViewport/FullScreenButton, -1)

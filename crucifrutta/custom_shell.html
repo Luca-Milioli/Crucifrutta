@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Il crucifrutta </title>
+    <title>Il crucifrutta</title>
     <style>
         html, body {
             margin: 0;
@@ -47,7 +47,7 @@
             left: 0;
             width: 100vw;
             height: 100vh;
-            background: #000;
+            background: transparent !important;
             display: block;
             opacity: 0;
             transition: opacity 1s ease;
@@ -133,7 +133,12 @@
         const progressBar = document.getElementById('progress');
         const statusDiv = document.getElementById('status');
 
-        var engine = new Engine($GODOT_CONFIG);
+        // Config base di Godot + canvas trasparente
+        var config = Object.assign({}, $GODOT_CONFIG, {
+            canvas: { alpha: true }
+        });
+
+        var engine = new Engine(config);
 
         engine.startGame({
             onProgress: function(current, total) {
