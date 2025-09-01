@@ -10,10 +10,18 @@ const URL = "https://spreafico.net/"
 ## In the v2 version there's not main menu so the gui is already in scene.
 func _ready() -> void:
 	get_tree().root.transparent_bg = true
-	
 	if $SubViewportContainer/SubViewport.has_node("Gui"):
 		_gameplay()
 
+## Checks every frame the screen orientation and stops the game (mobile only).
+func _process(_delta):
+	var orientation = DisplayServer.screen_get_orientation()
+	if orientation == DisplayServer.SCREEN_PORTRAIT:
+		$SubViewportContainer/SubViewport/RotateWarning.visible = true
+		get_tree().paused = true
+	else:
+		$SubViewportContainer/SubViewport/RotateWarning.visible = false
+		get_tree().paused = false
 
 ## When "back" button is pressed on menu, calls the URL using javascript eval function
 ## if the game is a webexport. Quits the application otherwise.
