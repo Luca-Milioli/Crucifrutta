@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Il crucifrutta</title>
+    <title>Cruciverba goloso</title>
     <style>
         html, body {
             margin: 0;
@@ -14,13 +14,17 @@
         }
 
         body {
-            font-family: "Skippy Sharp";
+            font-family: "Skyippy Sharp";
             background: linear-gradient(135deg, #FFE066, #FF6B9D, #C44CFF, #66D9EF, #7ED321);
             background-size: 400% 400%;
             animation: rainbowBg 8s ease infinite;
             display: flex;
             justify-content: center;
             align-items: center;
+        }
+        
+        body.ready {
+            background: transparent;
         }
 
         @font-face {
@@ -117,7 +121,7 @@
     <div class="overlay" id="overlay">
         <h1>
             <img src="../art/fruit/fragola.png" class="fruit-icon">
-            Il crucifrutta
+            Cruciverba goloso
             <img src="../art/fruit/albicocca.png" class="fruit-icon">
         </h1>
         <div class="loading">
@@ -129,6 +133,7 @@
     <script src="$GODOT_URL"></script>
     <script>
         const canvas = document.getElementById('canvas');
+        const body = document.body;
         const overlay = document.getElementById('overlay');
         const progressBar = document.getElementById('progress');
         const statusDiv = document.getElementById('status');
@@ -140,6 +145,7 @@
 
         var engine = new Engine(config);
 
+
         engine.startGame({
             onProgress: function(current, total) {
                 if (total > 0) {
@@ -150,6 +156,7 @@
         }).then(() => {
             overlay.style.display = 'none';
             canvas.classList.add('ready');
+            body.classList.add('ready');
         }).catch(err => {
             statusDiv.textContent = "Errore: " + err;
             statusDiv.classList.add('error');
