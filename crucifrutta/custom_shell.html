@@ -22,7 +22,7 @@
             justify-content: center;
             align-items: center;
         }
-        
+
         body.ready {
             background: transparent;
         }
@@ -145,8 +145,11 @@
 
         var engine = new Engine(config);
 
-
         engine.startGame({
+            onExecute: (args) => {
+                args.push("--device=" + getDeviceType());
+                return args;
+            },
             onProgress: function(current, total) {
                 if (total > 0) {
                     const percent = (current / total) * 100;
@@ -161,6 +164,18 @@
             statusDiv.textContent = "Errore: " + err;
             statusDiv.classList.add('error');
         });
+
+        function getDeviceType() {
+            const ua = navigator.userAgent;
+
+            if (/Mobi|Android/i.test(ua)) {
+                return "mobile";
+            }
+            if (/Tablet|iPad/i.test(ua)) {
+                return "tablet";
+            }
+            return "desktop";
+        }
         
         function toggleFullscreen() {
             if (!document.fullscreenElement) {
@@ -186,4 +201,3 @@
     </script>
 </body>
 </html>
-
