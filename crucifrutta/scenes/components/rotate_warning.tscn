@@ -1,9 +1,10 @@
 [gd_scene load_steps=3 format=3 uid="uid://c4tkwq1oa4k3o"]
 
 [ext_resource type="LabelSettings" uid="uid://cv8csea2dlti8" path="res://art/styleboxes/label_settings_40.tres" id="1_6vd3l"]
-[ext_resource type="Texture2D" uid="uid://chsogdpov4g86" path="res://art/graphics/mobile_rotate.png" id="2_plxsh"]
+[ext_resource type="Texture2D" uid="uid://dcaj6efcjt82b" path="res://art/graphics/mobile_rotate.png" id="2_plxsh"]
 
 [node name="RotateWarning" type="Control"]
+process_mode = 2
 visible = false
 z_index = 2
 layout_mode = 3
