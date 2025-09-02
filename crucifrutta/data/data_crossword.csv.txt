@@ -1,14 +1,14 @@
 1
-cruciverba1,È indispensabile per noi e per le piante,ACQUA,c,
-cruciverba2,Un animale amico della terra,LOMBRICO,r,l
-cruciverba3,Tagliare in agricoltura,POTARE,e,p
-cruciverba4,In un anno ce ne sono quattro,STAGIONI,s,
-cruciverba5,Gli agrumi ne hanno tanti,SPICCHI,c,
-cruciverba6,Si trasformano in compost,BUCCE,e,b
-cruciverba7,Quelli della zucchina si mangiano,FIORI,r,f
-cruciverba8,Trasferire il polline da una pianta all’altra,IMPOLLINARE,e,
+cruciverba1,È indispensabile per noi e per le piante,AcQua,c
+cruciverba2,Un animale amico della terra,LoMbriCo,r
+cruciverba3,Tagliare in agricoltura,PoTare,e
+cruciverba4,In un anno ce ne sono quattro,sTaGIoni,s
+cruciverba5,Gli agrumi ne hanno tanti,SpicCHi,c
+cruciverba6,Si trasformano in compost,BuCce,e
+cruciverba7,Quelli della zucchina si mangiano,FiOri,r
+cruciverba8,Trasferire il polline da una pianta all’altra,IMpoLLinare,e
 ,
-cruciverba9,L’agricoltura che rispetta la natura,BIOLOGICA,b,a
-cruciverba10,I colori del benessere,CINQUE,e,c
-cruciverba11,Fa bene al suolo,CONCIME,n,c
-cruciverba12,C’è egizia e alimentare,PIRAMIDE,e,
+cruciverba9,L’agricoltura che rispetta la natura,bIOlogiCA,b
+cruciverba10,I colori del benessere,cinQue,e
+cruciverba11,Fa bene al suolo,ConCIme,n
+cruciverba12,C’è egizia e alimentare,PiramiDe,e

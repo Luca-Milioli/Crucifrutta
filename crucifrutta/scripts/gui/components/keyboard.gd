@@ -8,8 +8,9 @@ var _is_dragging: bool = false
 ## Vector (x, y) that represents the drag offset.
 var _drag_offset: Vector2
 
-## Max length of the text in display.
-var _max_length: int
+## Initial text in display every times it opens. There are already the help characters, which
+## are not deletable.
+var _starting_text: String
 
 
 ## Creates buttons and connects signals.
@@ -28,7 +29,7 @@ func reset():
 
 
 ## Sets the word definition.
-func set_definition(text: String, length: int):
+func set_definition(text: String):
 	$Background/Label.set_text(text)
 
 
@@ -61,15 +62,16 @@ func new_text(button_pressed) -> String:
 	if button_pressed == $Background/Keyboard/ThirdRow/Backspace:
 		var chars = text.split("")
 		for i in range(chars.size() - 1, -1, -1):  # start from the end
-			if chars[i] != "_" and chars[i] != " ":
+			if chars[i] != self._starting_text[i]: # help_char not deletable
 				chars[i] = "_"
 				break
+		
 		text = "".join(chars)
 		return text
 
 	
 	if button_pressed != $Background/Confirm:
-		if text.length() < _max_length * 10:  # ogni lettera è seguita da uno spazio
+		if text.length() <= self._starting_text.length():
 			var pressed_char = button_pressed.get_node("Text").get_text()
 			var chars = text.split("")  # trasformo la stringa in array di caratteri
 			

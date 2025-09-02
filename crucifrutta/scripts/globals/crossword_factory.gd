@@ -9,15 +9,15 @@ func create_crossword() -> Crossword:
 	if self.all_crosswords.is_empty():
 		return null
 
-	var n_words = self.all_crosswords.front().size()
+	var n_words = self.all_crosswords.back().size()
 
 	var crossword_items: Array[CrosswordItem]
 	for i in n_words:
-		var dict = self.all_crosswords.front()[i]
+		var dict = self.all_crosswords.back()[i]
 		var crossword_item
 		if dict:
 			crossword_item = CrosswordItem.new(
-				dict["definition"], dict["answer"], dict["intersection"], dict["help_char"]
+				dict["definition"], dict["answer"], dict["intersection"]
 			)
 		else:
 			crossword_item = CrosswordItem.new("", "", "", "")
@@ -25,5 +25,5 @@ func create_crossword() -> Crossword:
 	var crossword = Crossword.new(crossword_items)
 	GameLogic.set_current_crossword(crossword)
 
-	self.all_crosswords.pop_front()
+	self.all_crosswords.pop_back()
 	return crossword

@@ -56,8 +56,7 @@ func read_csv(separator: String = ","):
 			var row_data: Dictionary = {
 				"definition": attributes[1],
 				"answer": attributes[2],
-				"intersection": attributes[3],
-				"help_char": attributes[4],
+				"intersection": attributes[3]
 			}
 			data.append(row_data)
 	

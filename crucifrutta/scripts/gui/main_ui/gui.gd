@@ -56,7 +56,7 @@ func crossword_setup(crossword: Crossword) -> void:
 	crossword_gui.gui_checks(crossword.left_length(), height)
 
 	crossword_gui.set("columns", length)
-	crossword_gui.setup(crossword.to_matrix(), crossword.column_highlighted(), crossword.help_list())
+	crossword_gui.setup(crossword.to_matrix(), crossword.column_highlighted())
 
 	add_child(crossword_gui)
 
@@ -67,7 +67,7 @@ func crossword_setup(crossword: Crossword) -> void:
 		"size", Vector2((size_box.x + separation.x) * length, (size_box.y + separation.y) * height)
 	)
 	crossword_gui.set(
-		"position", Vector2(121.5 + (36 * (11 - crossword.left_length() - 1)), 135 + size_box.y)
+		"position", Vector2(121.5 + (size_box.x * (11 - crossword.left_length() - 1)), 135 + size_box.y)
 	)
 
 	crossword_gui.connect("spawn_keyboard", _on_spawn_keyboard)
@@ -77,20 +77,24 @@ func crossword_setup(crossword: Crossword) -> void:
 ## (definition, answer length...)
 func _on_spawn_keyboard() -> void:
 	var row_index = $Crossword.get("_selected_row_index")
-	var answer_length = GameLogic.get_answer(row_index).length()
-	$Keyboard.set("_max_length", answer_length)
-
+	
 	Utils.recursive_disable_buttons(self, true)
 	Utils.recursive_disable_buttons($Keyboard, false)
 	$Keyboard.visible = true
-	$Keyboard.set_definition(GameLogic.get_item_definition(row_index), answer_length)
+	$Keyboard.set_definition(GameLogic.get_item_definition(row_index))
 	
-	var i = 0
-	var underscores = ""
-	while i < answer_length:
-		underscores += "_ "
-		i += 1
-	$Keyboard/Background/Display/Label.text = underscores
+	var answer = GameLogic.get_answer(row_index)
+	var starting_text = ""
+	for i in range(answer.length()):
+		if answer[i] >= "A" and answer[i] <= "Z":
+			starting_text += answer[i]
+		else:
+			starting_text += "_"
+		starting_text += " "
+	
+	$Keyboard/Background/Display/Label.set_text(starting_text)
+	
+	$Keyboard.set("_starting_text", starting_text)
 	
 	super.fade_in($Keyboard, 1.0, 0.8)
 

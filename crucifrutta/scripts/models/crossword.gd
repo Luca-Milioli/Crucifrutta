@@ -86,18 +86,6 @@ func get_n_words() -> int:
 ## Returns the index of center coloumn.
 func column_highlighted() -> int:
 	return left_length()
-
-
-## Return the list of already displayed char in the format:
-## [help_char_1, answer_1], [help_char_2, answer_2], ... , [help_char_n, answer_n]
-func help_list() -> Array:
-	var help_list = []
-	for row in _crossword_items:
-		var help_char = row.get("_help_char") if row != null else null
-		var to_append = row.get("_answer").to_lower().find(help_char) if not help_char.is_empty() else ""
-		help_list.append([help_char, to_append])
-		
-	return help_list
 	
 	
 ## Clear the row (called when answer is wrong).

@@ -62,7 +62,7 @@ func set_total_words(n_words: int) -> void:
 
 ## Checks if the answer given is correct and returns true/false.
 func answer_given(answer: String, index: int) -> bool:
-	if answer == get_answer(index):
+	if answer == get_answer(index).to_upper():
 		_correct_words += 1
 		if self._correct_words >= self._n_words:
 			_reset_crossword()

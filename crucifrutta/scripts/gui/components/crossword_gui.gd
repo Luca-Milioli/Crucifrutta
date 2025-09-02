@@ -57,7 +57,7 @@ func animate_row(correct: bool):
 
 
 ## Setup all the boxes of the crossword.
-func setup(charMatrix: Array[Array], highlighted_column: int, help_list: Array):
+func setup(charMatrix: Array[Array], highlighted_column: int):
 	var charbox_to_instantiate = preload("res://scenes/components/boxes/char_box.tscn")
 	var emptybox_to_instantiate = preload("res://scenes/components/boxes/empy_cell.tscn")
 	var graybox_to_instantiate = preload("res://scenes/components/boxes/gray_char_box.tscn")
@@ -80,8 +80,8 @@ func setup(charMatrix: Array[Array], highlighted_column: int, help_list: Array):
 				_:
 					box = charbox_to_instantiate.instantiate()
 					box.set_name("default:" + str(i + (j * get("columns"))))
-					if str(help_list[j][1]).is_valid_int() and col_index == help_list[j][1]:
-						box.get_node("Char").set_text(help_list[j][0])
+					if char >= "A" and char <= "Z":
+						box.get_node("Char").set_text(char)
 						box.set_tip_box(true)
 					if i == highlighted_column:
 						box.set("texture_normal", orange_texture)
@@ -119,7 +119,7 @@ func _on_charbox_clicked(row_index: int):
 
 
 ## Sets the text of row to the given text.
-func change_row_text(text) -> void:
+func change_row_text(text: String) -> void:
 	var selected_row_boxes = _get_selected_row_boxes()
 
 	var i = 0
@@ -128,18 +128,13 @@ func change_row_text(text) -> void:
 
 	var j = 0
 	var tip_char
-	var tip_box
 	while j < text.length() and selected_row_boxes[i + j] is CharBox:
-		if selected_row_boxes[i + j].is_tip_box():
-			tip_box = selected_row_boxes[i + j]
-			tip_char = tip_box.get_node("Char").get_text()
-		(selected_row_boxes[i + j] as Node).get_node("Char").set_text(text[j])
+		if not selected_row_boxes[i + j].is_tip_box():
+			(selected_row_boxes[i + j] as Node).get_node("Char").set_text(text[j])
 		j += 1
 	
 	if selected_row_boxes[i + j - 1] is CharBox:
 		await selected_row_boxes[i + j - 1].wrong_animation_done
-	if tip_box:
-		tip_box.get_node("Char").set_text(tip_char)
 
 ## Disables a row (called when the answer is correct).
 func disable_row():

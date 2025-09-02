@@ -1,6 +1,9 @@
 NUMBER OF CROSSWORDS
-cruciverba1,definition,ANSWER,intersection,help_char
-cruciverba2,definition,ANSWER,intersection,help_char
+cruciverba1,definition,anSwEr,intersection
+cruciverba2,definition,aNSweR,intersection
 ,  -> it will create a gray box
 ...
 |  -> it will separate different crosswords  
+
+
+# uppercase sletters in the answers will be the help characters.
