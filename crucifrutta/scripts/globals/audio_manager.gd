@@ -1,11 +1,15 @@
-## Singleton script for audio management
+## Signleton that manages sounds and it can mute or unmute.
 extends Node
 class_name AudioManagerScript
 
 
-## Plays the main ost.
+## _ready function: starts ost.
 func _ready() -> void:
 	$MainOst.play()
+
+## Pause the audio if paused is true. Resumes it otherwise.
+func set_paused(paused: bool) -> void:
+	AudioManager.get_tree().paused = paused
 
 
 ## Switches audio from off to on or from on to off.
@@ -15,7 +19,7 @@ func toggle_audio():
 		AudioServer.set_bus_mute(i, not is_muted)
 
 
-## Getter for audio, returns true if muted, false otherwise.
+## Getter for audio, returns true if muted, false otherwise .
 func is_audio_muted():
 	for i in AudioServer.get_bus_count():
 		if not AudioServer.is_bus_mute(i):
