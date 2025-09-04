@@ -9,7 +9,7 @@ signal wrong_animation_done
 var _animating = false
 
 ## True if box is a tipbox, false otherwise
-var _tip = false 
+var _tip = false
 
 
 ## Variables setup.
@@ -50,9 +50,10 @@ func wrong_animation() -> void:
 	tween.tween_property($Char, "position", start_pos + Vector2(-20, 0), 0.1).set_delay(0.1)
 	tween.tween_property($Char, "position", start_pos + Vector2(+20, 0), 0.1).set_delay(0.2)
 	tween.tween_property($Char, "position", start_pos, 0.1).set_delay(0.3)
-	tween.finished.connect(func(): 
-		self._animating = false
-		Utils.recursive_disable_buttons(get_parent(), false)
+	tween.finished.connect(
+		func():
+			self._animating = false
+			Utils.recursive_disable_buttons(get_parent(), false)
 	)
 	await tween.finished
 	self.wrong_animation_done.emit()

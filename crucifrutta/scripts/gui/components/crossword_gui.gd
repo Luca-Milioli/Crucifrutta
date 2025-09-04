@@ -63,7 +63,7 @@ func setup(charMatrix: Array[Array], highlighted_column: int):
 	var graybox_to_instantiate = preload("res://scenes/components/boxes/gray_char_box.tscn")
 	var orange_texture = preload("res://art/graphics/slots/OrangeSlot.png")
 	var orange_texture_hover = preload("res://art/graphics/slots/OrangeHoverSlot.png")
-	
+
 	var j = 0
 	for row in charMatrix:
 		var i = 0
@@ -88,10 +88,10 @@ func setup(charMatrix: Array[Array], highlighted_column: int):
 						box.set("texture_disabled", orange_texture)
 						box.set("texture_hover", orange_texture_hover)
 						box.set("texture_pressed", orange_texture_hover)
-					
+
 					box.connect("pressed", _on_charbox_clicked.bind(charMatrix.find(row)))
-					col_index+=1
-					
+					col_index += 1
+
 			self._child_list.append(box)
 			i += 1
 		j += 1
@@ -132,9 +132,10 @@ func change_row_text(text: String) -> void:
 		if not selected_row_boxes[i + j].is_tip_box():
 			(selected_row_boxes[i + j] as Node).get_node("Char").set_text(text[j])
 		j += 1
-	
+
 	if selected_row_boxes[i + j - 1] is CharBox:
 		await selected_row_boxes[i + j - 1].wrong_animation_done
+
 
 ## Disables a row (called when the answer is correct).
 func disable_row():
@@ -149,7 +150,7 @@ func clear_row_text() -> void:
 	for box in _get_selected_row_boxes():
 		if box is CharBox and not box.is_tip_box():
 			await get_tree().process_frame
-			box.get_node("Char").set_text("") 
+			box.get_node("Char").set_text("")
 
 
 ## Plays an idle animation every timeout.

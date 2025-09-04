@@ -86,8 +86,8 @@ func get_n_words() -> int:
 ## Returns the index of center coloumn.
 func column_highlighted() -> int:
 	return left_length()
-	
-	
+
+
 ## Clear the row (called when answer is wrong).
 func empty_row(length: int) -> Array:
 	var row: Array

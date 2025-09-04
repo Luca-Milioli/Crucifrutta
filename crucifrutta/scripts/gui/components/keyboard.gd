@@ -62,30 +62,28 @@ func new_text(button_pressed) -> String:
 	if button_pressed == $Background/Keyboard/ThirdRow/Backspace:
 		var chars = text.split("")
 		for i in range(chars.size() - 1, -1, -1):  # start from the end
-			if chars[i] != self._starting_text[i]: # help_char not deletable
+			if chars[i] != self._starting_text[i]:  # help_char not deletable
 				chars[i] = "_"
 				break
-		
+
 		text = "".join(chars)
 		return text
 
-	
 	if button_pressed != $Background/Confirm:
 		if text.length() <= self._starting_text.length():
 			var pressed_char = button_pressed.get_node("Text").get_text()
 			var chars = text.split("")  # trasformo la stringa in array di caratteri
-			
+
 			# Trovo il primo underscore libero
 			var i = 0
-			while  i < chars.size() - 1 and chars[i] != "_":
+			while i < chars.size() - 1 and chars[i] != "_":
 				i += 1
 			if i < chars.size() - 1:
 				chars[i] = pressed_char
-			
-			text = "".join(chars)
-		
-	return text
 
+			text = "".join(chars)
+
+	return text
 
 
 ## Called every time the user presses a button.

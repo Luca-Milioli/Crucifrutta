@@ -67,7 +67,8 @@ func crossword_setup(crossword: Crossword) -> void:
 		"size", Vector2((size_box.x + separation.x) * length, (size_box.y + separation.y) * height)
 	)
 	crossword_gui.set(
-		"position", Vector2(121.5 + (size_box.x * (11 - crossword.left_length() - 1)), 135 + size_box.y)
+		"position",
+		Vector2(121.5 + (size_box.x * (11 - crossword.left_length() - 1)), 135 + size_box.y)
 	)
 
 	crossword_gui.connect("spawn_keyboard", _on_spawn_keyboard)
@@ -77,12 +78,12 @@ func crossword_setup(crossword: Crossword) -> void:
 ## (definition, answer length...)
 func _on_spawn_keyboard() -> void:
 	var row_index = $Crossword.get("_selected_row_index")
-	
+
 	Utils.recursive_disable_buttons(self, true)
 	Utils.recursive_disable_buttons($Keyboard, false)
 	$Keyboard.visible = true
 	$Keyboard.set_definition(GameLogic.get_item_definition(row_index))
-	
+
 	var answer = GameLogic.get_answer(row_index)
 	var starting_text = ""
 	for i in range(answer.length()):
@@ -91,11 +92,11 @@ func _on_spawn_keyboard() -> void:
 		else:
 			starting_text += "_"
 		starting_text += " "
-	
+
 	$Keyboard/Background/Display/Label.set_text(starting_text)
-	
+
 	$Keyboard.set("_starting_text", starting_text)
-	
+
 	super.fade_in($Keyboard, 1.0, 0.8)
 
 
@@ -123,9 +124,9 @@ func _on_close_button_pressed() -> void:
 ## given answer is correct, play correct or wrong audio and animates eveything.
 func _on_confirm_pressed() -> void:
 	Utils.recursive_disable_buttons(self, true)
-	
+
 	var text: String = $Keyboard/Background/Display/Label.get_text()
-	text = text.replace(" ","").replace("_", "")
+	text = text.replace(" ", "").replace("_", "")
 	$Crossword.change_row_text(text)
 
 	await _close_keyboard()

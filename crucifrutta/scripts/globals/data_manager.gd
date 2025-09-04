@@ -54,15 +54,13 @@ func read_csv(separator: String = ","):
 
 			# attributes[0] = "cruciverbaN"
 			var row_data: Dictionary = {
-				"definition": attributes[1],
-				"answer": attributes[2],
-				"intersection": attributes[3]
+				"definition": attributes[1], "answer": attributes[2], "intersection": attributes[3]
 			}
 			data.append(row_data)
-	
+
 	while not data.back():
 		data.pop_back()
-	
+
 	self.all_crosswords.shuffle()
 	self.all_crosswords.append(data)
 	file.close()
